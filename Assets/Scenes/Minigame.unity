@@ -260,6 +260,7 @@ MonoBehaviour:
   cursorTexture: {fileID: 0}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  map: {fileID: 1248850313}
   speed: 2
   isAccurate: 1
 --- !u!1 &464815689
@@ -309,6 +310,7 @@ MonoBehaviour:
   cursorTexture: {fileID: 0}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  map: {fileID: 1248850313}
   speed: 3
   isAccurate: 0
 --- !u!1 &756890576
@@ -358,6 +360,7 @@ MonoBehaviour:
   cursorTexture: {fileID: 0}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  map: {fileID: 1248850313}
   speed: 1
   isAccurate: 1
 --- !u!1 &1248850310
@@ -2131,6 +2134,7 @@ MonoBehaviour:
   cursorTexture: {fileID: 0}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  map: {fileID: 1248850313}
   speed: 1
   isAccurate: 1
 --- !u!1 &1641919214
@@ -2181,6 +2185,7 @@ MonoBehaviour:
   cursorTexture: {fileID: 0}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  map: {fileID: 1248850313}
   speed: 3
   isAccurate: 0
 --- !u!212 &1641919217
