@@ -9,8 +9,7 @@ public class Tool : MonoBehaviour
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
     public GameObject[] layers;
-    System.Random rnd = new System.Random(); 
-    public bool isAccurate = true;
+    public Vector4 pattern;
 
     void OnMouseEnter()
     {
@@ -20,6 +19,16 @@ public class Tool : MonoBehaviour
     void OnMouseExit()
     {
         Cursor.SetCursor(null, Vector2.zero, cursorMode);
+    }
+
+    void activeToolShovel() {
+        //cursorTexture = ;
+        pattern = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+    }
+
+    void activeToolBrush() {
+        //cursorTexture = ;
+        pattern = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
     }
 
     void Start() {
@@ -46,18 +55,11 @@ public class Tool : MonoBehaviour
     }
 
     void deleteTilesAtPosition(Vector3Int gridPosition, Tilemap map) {
-        if(isAccurate) {
+        if(pattern == Vector4.zero) {
             map.SetTile(gridPosition, null);
         } else {
             map.SetTile(gridPosition, null);
-
-            Vector3Int inaccuracyX = gridPosition;
-            inaccuracyX.x = inaccuracyX.x + rnd.Next(-1, 1);    
-            map.SetTile(inaccuracyX, null);
-
-            Vector3Int inaccuracyY = gridPosition;
-            inaccuracyY.y = inaccuracyY.y + rnd.Next(-1, 1);
-            map.SetTile(inaccuracyY, null);                                
+            // map.SetTile(gridPosition + pattern, null);                            
         } 
     }
 }
