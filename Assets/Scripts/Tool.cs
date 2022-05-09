@@ -7,10 +7,11 @@ public class Tool : MonoBehaviour
 {
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
+    public Vector2 hotSpot = new Vector2(2, 2);
     public GameObject[] layers;
     public Vector4 pattern;
 
+/*
     void OnMouseEnter()
     {
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
@@ -20,14 +21,14 @@ public class Tool : MonoBehaviour
     {
         Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
-
-    void activeToolShovel() {
+*/
+    public void activeToolShovel() {
         //cursorTexture = ;
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         pattern = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
-    void activeToolBrush() {
-        //cursorTexture = ;
+    public void activeToolBrush() {
         pattern = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
     }
 
