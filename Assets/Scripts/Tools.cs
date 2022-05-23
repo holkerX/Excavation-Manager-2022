@@ -11,6 +11,7 @@ public class Tools : MonoBehaviour
     public Texture2D cursorTextureShovel;
     public Texture2D cursorTextureBrush;
     public Texture2D cursorTextureDefault;
+    public Texture2D cursorTextureArtifact;
     private Vector2 cursorHotspot;
     public GameObject[] layers;
     public Vector4 pattern;
@@ -40,6 +41,11 @@ public class Tools : MonoBehaviour
         Cursor.SetCursor(cursorTextureDefault, cursorHotspot, CursorMode.Auto);
     }
 
+    public void setCursorArtifact() {
+        cursorHotspot = new Vector2 (cursorTextureDefault.width / 2, cursorTextureDefault.height / 2);
+        Cursor.SetCursor(cursorTextureArtifact, cursorHotspot, CursorMode.Auto);
+    }
+
     void Update() {
         if(Input.GetMouseButtonUp(0)) {
             Vector3 mousePosition = Input.mousePosition;
@@ -51,6 +57,10 @@ public class Tools : MonoBehaviour
                 Tilemap map = GameObject.Find("Ground (" + i + ")").GetComponent<Tilemap>();
 
                 Vector3Int gridPosition = map.WorldToCell(mousePosition);
+
+                // Wenn Artifact && ausgegraben -> Detail Ansicht 
+                // Sonst tue nichts oder Artiakt beschädigt???
+
                 if(map.HasTile(gridPosition)) {
                     deleteTilesAtPosition(gridPosition, map);
                     i = layers.Length + 1;
