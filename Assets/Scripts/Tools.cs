@@ -12,8 +12,8 @@ public class Tools : MonoBehaviour
     public Texture2D cursorTextureBrush;
     public Texture2D cursorTextureDefault;
     private Vector2 cursorHotspot;
-    public GameObject[] layers;
-    public Vector4 pattern;
+    private GameObject[] layers;
+    private Vector4 pattern;
 
     public void activeToolShovel() {
         cursorTexture = cursorTextureShovel;
@@ -45,8 +45,9 @@ public class Tools : MonoBehaviour
             Vector3 mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-            //Nur die Anzahl der Layer, weil richtige Sortierung wichtig und FindGameObjectsWithTag diese nicht garantiert
-            for(int i = 0; i < layers.Length; i++) {
+            //Nur die Anzahl der Layer -1, weil richtige Sortierung wichtig und FindGameObjectsWithTag diese nicht garantiert
+            //-1 weil der letzte Layer nicht abgetragen werden kann
+            for(int i = 0; i < layers.Length - 1; i++) {
                 // Sortiert nach Name, größere Zahl = tiefer
                 Tilemap map = GameObject.Find("Ground (" + i + ")").GetComponent<Tilemap>();
 

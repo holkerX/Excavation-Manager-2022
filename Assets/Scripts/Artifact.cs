@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class Artifact : MonoBehaviour
 {
-    public int height;
     public bool[][] filledTiles;
 }
