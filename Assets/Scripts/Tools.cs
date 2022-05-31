@@ -112,13 +112,12 @@ namespace ToolBehavior
 
         void zoomArtifact(Vector3 mousePosition)
         {
-            Debug.Log("hhhaj");
-            for (int i = 0; i < artifacts.Length - 1; i++)
+            for (int i = 0; i < artifacts.Length; i++)
             {
                 // Sortiert nach Name, größere Zahl = tiefer
                 Tilemap artifact =
                     GameObject
-                        .Find("Ground (" + i + ")")
+                        .Find("Artifact (" + i + ")")
                         .GetComponent<Tilemap>();
 
                 Vector3Int gridPosition = artifact.WorldToCell(mousePosition);
