@@ -7,11 +7,13 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
 
     public Rigidbody2D rb;
+
     public Animator animator;
 
     Vector2 movement;
 
-    void Start() {
+    void Start()
+    {
     }
 
     // Update is called once per frame
@@ -23,14 +25,19 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(movement != Vector2.zero) {
+        if (movement != Vector2.zero)
+        {
             animator.SetFloat("XInput", movement.x);
             animator.SetFloat("YInput", movement.y);
             animator.SetBool("IsWalking", true);
-        } else {
+        }
+        else
+        {
             animator.SetBool("IsWalking", false);
         }
 
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb
+            .MovePosition(rb.position +
+            movement * moveSpeed * Time.fixedDeltaTime);
     }
 }
