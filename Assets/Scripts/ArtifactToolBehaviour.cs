@@ -43,11 +43,11 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     private void useActiveTool(Vector3 mousePosition)
     {
-        if (!checkTilesArtifact(mousePosition))
+        if (!checkTilesDust(mousePosition))
         {
-            if (!checkTilesGround(mousePosition))
+            if (!checkTilesArtifact(mousePosition))
             {
-                if (!checkTilesDust(mousePosition))
+                if (!checkTilesGround(mousePosition))
                 {
                     //Not a click on the Grid or a Bug
                 }
@@ -57,20 +57,38 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     bool checkTilesArtifact(Vector3 mousePosition)
     {
-        Tilemap artifact = GameObject.Find("Artifact").GetComponent<Tilemap>();
+        GameObject artifact = GameObject.Find("Artifact");
+        Tilemap artifactTilemap = artifact.GetComponent<Tilemap>();
 
-        Vector3Int gridPosition = artifact.WorldToCell(mousePosition);
+        Vector3Int gridPosition = artifactTilemap.WorldToCell(mousePosition);
 
-        if (artifact.HasTile(gridPosition))
+        if (artifactTilemap.HasTile(gridPosition))
         {
             if (toolCanDamageArtifact)
             {
-                //Subtract EXP
-                //Load Damaged Tile
+                artefactDamaged(artifact);
+
+                //Load Damaged Tile Graphics???
             }
             return true;
         }
         return false;
+    }
+
+    void artefactDamaged(GameObject artifact)
+    {
+        //Get the Exp from the Artifact
+        ArtifactArtifact artifactScript = artifact.GetComponent<ArtifactArtifact>();
+
+        //Substract Damaged Penalty
+        if(artifactScript.experiencePoints > 0) {
+            artifactScript.experiencePoints = artifactScript.experiencePoints  - 20;
+        }
+
+        //Set the Textfield in the UI
+        TMPro.TextMeshProUGUI expCounter =
+            GameObject.Find("ExpCounter").GetComponent<TMPro.TextMeshProUGUI>();
+        expCounter.text = "EXP: " + artifactScript.experiencePoints;
     }
 
     bool checkTilesGround(Vector3 mousePosition)
@@ -91,7 +109,6 @@ public class ArtifactToolBehaviour : MonoBehaviour
                 Vector3Int gridPosition =
                     groundLayer.WorldToCell(mousePosition);
 
-                Debug.Log(groundLayer.HasTile(gridPosition));
                 if (groundLayer.HasTile(gridPosition))
                 {
                     deleteTilesAtPosition (gridPosition, groundLayer);
@@ -111,9 +128,15 @@ public class ArtifactToolBehaviour : MonoBehaviour
             Tilemap dustLayer =
                 GameObject.Find("Dust (" + i + ")").GetComponent<Tilemap>();
 
+            Tilemap groundLayer =
+                GameObject.Find("Ground (" + i + ")").GetComponent<Tilemap>();
+
             Vector3Int gridPosition = dustLayer.WorldToCell(mousePosition);
 
-            if (dustLayer.HasTile(gridPosition))
+            if (
+                dustLayer.HasTile(gridPosition) &&
+                !groundLayer.HasTile(gridPosition)
+            )
             {
                 deleteTilesAtPosition (gridPosition, dustLayer);
                 i = dustLayers.Length + 1;
