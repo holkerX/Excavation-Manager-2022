@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-namespace ToolBehavior
+namespace CursorBehavior
 {
-    public class Tools : MonoBehaviour
+    public class DiggingToolBehaviour : MonoBehaviour
     {
         //Cursor textures
         public Texture2D cursorTextureShovel;
@@ -39,7 +39,7 @@ namespace ToolBehavior
             pattern = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
         }
 
-        public void activeToolBrush()
+        public void activeToolPickaxe()
         {
             zoomArtifactActive = false;
             cursorTexture = cursorTextureBrush;
@@ -98,7 +98,7 @@ namespace ToolBehavior
             {
                 Vector3 mousePosition = Input.mousePosition;
                 mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
+                mousePosition.z = 0; //Die Tilemaps sind auf z = 0 und die Kamera bei z = -10 --> Tilemap.HasTile(mousePosition) muss bei z = 0 haben um true zu sein
                 if (zoomArtifactActive)
                 {
                     zoomArtifact (mousePosition);
@@ -125,7 +125,7 @@ namespace ToolBehavior
                 //Zoom artifact UI-Button was pressed
                 if (artifact.HasTile(gridPosition))
                 {
-                    SceneManager.LoadScene("Artifact", LoadSceneMode.Additive);
+                    SceneManager.LoadScene("Artifact");
                 }
             }
         }
