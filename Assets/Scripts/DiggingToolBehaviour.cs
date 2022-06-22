@@ -12,7 +12,7 @@ namespace CursorBehavior
         //Cursor textures
         public Texture2D cursorTextureShovel;
 
-        public Texture2D cursorTextureBrush;
+        public Texture2D cursorTexturePickaxe;
 
         public Texture2D cursorTextureDefault;
 
@@ -42,7 +42,7 @@ namespace CursorBehavior
         public void activeToolPickaxe()
         {
             zoomArtifactActive = false;
-            cursorTexture = cursorTextureBrush;
+            cursorTexture = cursorTexturePickaxe;
             pattern = new Vector4(1.0f, 0.0f, 1.0f, 0.0f);
         }
 
