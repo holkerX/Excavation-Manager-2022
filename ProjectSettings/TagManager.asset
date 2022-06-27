@@ -6,6 +6,8 @@ TagManager:
   tags:
   - GroundLayer
   - Event
+  - Artifact
+  - DustLayer
   layers:
   - Default
   - TransparentFX

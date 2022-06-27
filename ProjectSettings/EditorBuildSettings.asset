@@ -14,4 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Management.unity
     guid: fcfbd0899febe074bb1ed1f755dbc667
+    path: Assets/Scenes/Sandbox.unity
+    guid: b8d6100f32430e74388b20610cb79e9c
+  - enabled: 1
+    path: Assets/Scenes/Digging.unity
+    guid: f8845b61f5b65ae4d82a95b7290b6d77
+  - enabled: 1
+    path: Assets/Scenes/Artifact.unity
+    guid: 63c27656a22ab9e43aa6e6c644e8ff99
   m_configObjects: {}
