@@ -11,9 +11,10 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     Vector2 movement;
-
+    bool canStartDigging = false;
     bool firstFlagPlaced = false;
     Vector2 firstFlagPosition;
+    Vector2 secondFlagPosition;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         {
             movement.x = Input.GetAxisRaw("Horizontal");
         }
+
         if (movement.x == 0)
         {
             movement.y = Input.GetAxisRaw("Vertical");
@@ -33,7 +35,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-            placeFlag();
+            if (!canStartDigging)
+            {
+                placeFlag();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("f"))
+        {
+            checkPlayerAtDesk();
         }
     }
 
@@ -45,29 +55,57 @@ public class PlayerMovement : MonoBehaviour
 
         Sprite sprite = Resources.Load<Sprite>("Flag");
 
-        if(firstFlagPlaced) {
+        if (firstFlagPlaced)
+        {
             createFlagObject("flag2", playerPosition);
-        } else {
+        }
+        else
+        {
             createFlagObject("flag1", playerPosition);
         }
-              
-        if(firstFlagPlaced) {
+
+        if (firstFlagPlaced)
+        {
+            secondFlagPosition.x = playerPosition.x;
+            secondFlagPosition.y = playerPosition.y;
             firstFlagPlaced = false;
-            SceneManager.LoadScene("Digging");
-        } else {
-            firstFlagPosition.x = playerPosition.x; 
-            firstFlagPosition.y = playerPosition.y; 
+            canStartDigging = true;
+        }
+        else
+        {
+            firstFlagPosition.x = playerPosition.x;
+            firstFlagPosition.y = playerPosition.y;
             firstFlagPlaced = true;
-        }    
+            canStartDigging = false;
+        }
     }
 
-    void createFlagObject(string name, Vector3 position){
-        Debug.Log(position);
+    void createFlagObject(string name, Vector3 position)
+    {
         GameObject flag = new GameObject();
         flag.name = name;
         flag.AddComponent<SpriteRenderer>();
         flag.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Flag");
         flag.transform.position = position;
+    }
+
+    void checkPlayerAtDesk()
+    {
+        float distance = Vector3.Distance(GameObject.Find("Player").transform.position, GameObject.Find("Desk").transform.position);
+
+        if (canStartDigging && distance < 1.5)
+        {
+            canStartDigging = false;
+            Vector2 rect = secondFlagPosition - firstFlagPosition;
+            Debug.Log(rect);
+            //Skalierung von Sandbox zu Ausgrabungs Scene ist noch nicht klar z.B * 2 ???
+            
+            //Camera position x
+            //firstFlagPosition - rect.x / 2
+            //Camera position y
+            //firstFlagPosition - rect.y / 2
+            //SceneManager.LoadScene("Digging");
+        }
     }
 
     void FixedUpdate()
