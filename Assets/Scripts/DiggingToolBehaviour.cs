@@ -149,6 +149,7 @@ namespace CursorBehavior
                 if (groundLayer.HasTile(gridPosition))
                 {
                     deleteTilesAtPosition(gridPosition, groundLayer);
+                    depleteManpower();
                     i = layers.Length + 1;
                 }
             }
@@ -181,6 +182,26 @@ namespace CursorBehavior
                 gridPosTmp.y = gridPosTmp.y - (int)Math.Floor(pattern.w);
                 map.SetTile(gridPosTmp, null);
             }
+        }
+
+        void depleteManpower()
+        {
+            GameObject DoNotDestroyObject = GameObject.Find("DoNotDestroyObject");
+            //Get the Exp from the Artifact
+            DontDestroy dontDestroyScript =
+                DoNotDestroyObject.GetComponent<DontDestroy>();
+
+            //Substract Damaged Penalty
+            if (dontDestroyScript.manpower > 0)
+            {
+                dontDestroyScript.manpower =
+                    dontDestroyScript.manpower - 1;
+            }
+
+            //Set the Textfield in the UI
+            TMPro.TextMeshProUGUI expCounter =
+                GameObject.Find("ManpowerCounter").GetComponent<TMPro.TextMeshProUGUI>();
+            expCounter.text = "Manpower: \n\r" + dontDestroyScript.manpower;
         }
     }
 }
