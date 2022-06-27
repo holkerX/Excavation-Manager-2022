@@ -12,7 +12,7 @@ namespace CursorBehavior
         //Cursor textures
         public Texture2D cursorTextureShovel;
 
-        public Texture2D cursorTextureBrush;
+        public Texture2D cursorTexturePickaxe;
 
         public Texture2D cursorTextureDefault;
 
@@ -42,7 +42,7 @@ namespace CursorBehavior
         public void activeToolPickaxe()
         {
             zoomArtifactActive = false;
-            cursorTexture = cursorTextureBrush;
+            cursorTexture = cursorTexturePickaxe;
             pattern = new Vector4(1.0f, 0.0f, 1.0f, 0.0f);
         }
 
@@ -101,11 +101,11 @@ namespace CursorBehavior
                 mousePosition.z = 0; //Die Tilemaps sind auf z = 0 und die Kamera bei z = -10 --> Tilemap.HasTile(mousePosition) muss bei z = 0 haben um true zu sein
                 if (zoomArtifactActive)
                 {
-                    zoomArtifact (mousePosition);
+                    zoomArtifact(mousePosition);
                 }
                 else
                 {
-                    digGround (mousePosition);
+                    digGround(mousePosition);
                 }
             }
         }
@@ -148,7 +148,7 @@ namespace CursorBehavior
                 //Zoom artifact UI-Button was pressed
                 if (groundLayer.HasTile(gridPosition))
                 {
-                    deleteTilesAtPosition (gridPosition, groundLayer);
+                    deleteTilesAtPosition(gridPosition, groundLayer);
                     i = layers.Length + 1;
                 }
             }
@@ -166,19 +166,19 @@ namespace CursorBehavior
                 Vector3Int gridPosTmp;
 
                 gridPosTmp = gridPosition;
-                gridPosTmp.x = gridPosTmp.x + (int) Math.Floor(pattern.x);
+                gridPosTmp.x = gridPosTmp.x + (int)Math.Floor(pattern.x);
                 map.SetTile(gridPosTmp, null);
 
                 gridPosTmp = gridPosition;
-                gridPosTmp.y = gridPosTmp.y + (int) Math.Floor(pattern.y);
+                gridPosTmp.y = gridPosTmp.y + (int)Math.Floor(pattern.y);
                 map.SetTile(gridPosTmp, null);
 
                 gridPosTmp = gridPosition;
-                gridPosTmp.x = gridPosTmp.x - (int) Math.Floor(pattern.z);
+                gridPosTmp.x = gridPosTmp.x - (int)Math.Floor(pattern.z);
                 map.SetTile(gridPosTmp, null);
 
                 gridPosTmp = gridPosition;
-                gridPosTmp.y = gridPosTmp.y - (int) Math.Floor(pattern.w);
+                gridPosTmp.y = gridPosTmp.y - (int)Math.Floor(pattern.w);
                 map.SetTile(gridPosTmp, null);
             }
         }

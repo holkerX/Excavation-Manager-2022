@@ -66,7 +66,7 @@ public class ArtifactToolBehaviour : MonoBehaviour
         {
             if (toolCanDamageArtifact)
             {
-                artefactDamaged(artifact);
+                artefactDamaged (artifact);
 
                 //Load Damaged Tile Graphics???
             }
@@ -78,11 +78,14 @@ public class ArtifactToolBehaviour : MonoBehaviour
     void artefactDamaged(GameObject artifact)
     {
         //Get the Exp from the Artifact
-        ArtifactArtifact artifactScript = artifact.GetComponent<ArtifactArtifact>();
+        ArtifactArtifact artifactScript =
+            artifact.GetComponent<ArtifactArtifact>();
 
         //Substract Damaged Penalty
-        if(artifactScript.experiencePoints > 0) {
-            artifactScript.experiencePoints = artifactScript.experiencePoints  - 20;
+        if (artifactScript.experiencePoints > 0)
+        {
+            artifactScript.experiencePoints =
+                artifactScript.experiencePoints - 20;
         }
 
         //Set the Textfield in the UI
