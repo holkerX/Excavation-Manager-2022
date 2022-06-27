@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
             //firstFlagPosition - rect.x / 2
             //Camera position y
             //firstFlagPosition - rect.y / 2
-            //SceneManager.LoadScene("Digging");
+            SceneManager.LoadScene("Digging");
         }
     }
 
