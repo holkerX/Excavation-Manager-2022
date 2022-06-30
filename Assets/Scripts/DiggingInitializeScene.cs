@@ -16,11 +16,6 @@ public class DiggingInitializeScene : MonoBehaviour
 
         Vector2 scaledGridSize = DontDestroyScript.size * 20;     
 
-        Debug.Log(startingPoint);
-        Debug.Log(DontDestroyScript.size);
-        Debug.Log(scaledGridSize);
-        Debug.Log("__________________");
-
         GameObject mainCamera = GameObject.Find("Main Camera");
 
         // Position setzten
@@ -30,11 +25,29 @@ public class DiggingInitializeScene : MonoBehaviour
 
         mainCamera.transform.position = cameraPosition;
 
-        Debug.Log(cameraPosition);
-
         // Größe Skalieren
-        mainCamera.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * (DontDestroyScript.size.x + 1);
+        float x = DontDestroyScript.size.x;
+        float y = DontDestroyScript.size.y;
+        // Werte können jeh nach Konstellation der Flagge negativ sein
+        if(x < 0){
+            x = x * -1;
+        }
+        if(y < 0){
+            y = y * -1;
+        }
+
+        float factor = 1; //Kameragröße 0 gibts nicht also Vector(0,0) ist Kameragröße 1...
+        if(x < y){
+            factor = factor + y;
+        } else {
+            factor = factor + x;
+        }
+        
+        Debug.Log(factor);
+        Debug.Log(DontDestroyScript.size);
+
+        mainCamera.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * factor;
         Camera camera = mainCamera.GetComponent<Camera>();
-        camera.orthographicSize = (DontDestroyScript.size.x + 1) * 10; 
+        camera.orthographicSize = factor * 10; 
     }
 }
