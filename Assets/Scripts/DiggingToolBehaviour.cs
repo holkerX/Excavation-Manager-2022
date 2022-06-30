@@ -80,6 +80,7 @@ namespace CursorBehavior
 
         public void setCursorArtifact()
         {
+            Debug.Log(zoomArtifactActive);
             if (!zoomArtifactActive)
             {
                 cursorHotspot =
