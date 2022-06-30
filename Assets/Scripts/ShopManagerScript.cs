@@ -16,7 +16,7 @@ public class ShopManagerScript : MonoBehaviour
 
     void Start()
     {
-        MoneyTXT.text = "Money:" + money.ToString();
+        MoneyTXT.text = money.ToString();
 
         //ID's
         shopItems[1, 1] = 1;
@@ -64,7 +64,7 @@ public class ShopManagerScript : MonoBehaviour
         {
             money -= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().ItemID];
             shopItems[3, ButtonRef.GetComponent<ButtonInfo>().ItemID]++;
-            MoneyTXT.text = "Money:" + money.ToString();
+            MoneyTXT.text = money.ToString();
             ButtonRef.GetComponent<ButtonInfo>().QuantityTxt.text = shopItems[3, ButtonRef.GetComponent<ButtonInfo>().ItemID].ToString();
 
         }
