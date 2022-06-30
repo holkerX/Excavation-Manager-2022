@@ -9,6 +9,7 @@ public class DiggingInitializeScene : MonoBehaviour
             DontDestroy DontDestroyScript =
                 DoNotDestroyObject.GetComponent<DontDestroy>();
 
+        Debug.Log(DontDestroyScript.startingPoint);
         // 1 zu 20 Tile Verhältnis zwischen den Szenen (2m zu 10cm pro Tile)        
         Vector2 startingPoint = DontDestroyScript.startingPoint * 20;
         startingPoint.x = startingPoint.x + 10;
@@ -42,9 +43,6 @@ public class DiggingInitializeScene : MonoBehaviour
         } else {
             factor = factor + x;
         }
-        
-        Debug.Log(factor);
-        Debug.Log(DontDestroyScript.size);
 
         mainCamera.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * factor;
         Camera camera = mainCamera.GetComponent<Camera>();
