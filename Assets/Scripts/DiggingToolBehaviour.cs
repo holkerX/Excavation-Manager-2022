@@ -80,6 +80,7 @@ namespace CursorBehavior
 
         public void setCursorArtifact()
         {
+            Debug.Log(zoomArtifactActive);
             if (!zoomArtifactActive)
             {
                 cursorHotspot =
@@ -187,11 +188,10 @@ namespace CursorBehavior
         void depleteManpower()
         {
             GameObject DoNotDestroyObject = GameObject.Find("DoNotDestroyObject");
-            //Get the Exp from the Artifact
+            //Get Data from Manager Ui
             DontDestroy dontDestroyScript =
                 DoNotDestroyObject.GetComponent<DontDestroy>();
 
-            //Substract Damaged Penalty
             if (dontDestroyScript.manpower > 0)
             {
                 dontDestroyScript.manpower =
