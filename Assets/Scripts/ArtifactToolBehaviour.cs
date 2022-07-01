@@ -195,4 +195,9 @@ public class ArtifactToolBehaviour : MonoBehaviour
         toolCanDamageArtifact = true;
         toolCanDig = true;
     }
+
+    public void quitScene()
+    {
+        SceneManager.LoadScene("Digging");
+    }
 }
