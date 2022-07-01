@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DataStorage;
 
 public class DiggingInitializeScene : MonoBehaviour
 {
-    void Awake(){
-        GameObject DoNotDestroyObject = GameObject.Find("DoNotDestroyObject");
-            DontDestroy DontDestroyScript =
-                DoNotDestroyObject.GetComponent<DontDestroy>();
+    void Awake()
+    {
+        GameObject dataStorageObject = GameObject.Find("DataStorageObject");
+        DataStorageClass dataStorage =
+            dataStorageObject.GetComponent<DataStorageClass>();
 
-        Debug.Log(DontDestroyScript.startingPoint);
+        Debug.Log(dataStorage.startingPoint);
         // 1 zu 20 Tile Verhältnis zwischen den Szenen (2m zu 10cm pro Tile)        
-        Vector2 startingPoint = DontDestroyScript.startingPoint * 20;
+        Vector2 startingPoint = dataStorage.startingPoint * 20;
         startingPoint.x = startingPoint.x + 10;
         startingPoint.y = startingPoint.y + 10;
 
-        Vector2 scaledGridSize = DontDestroyScript.size * 20;     
+        Vector2 scaledGridSize = dataStorage.size * 20;
 
         GameObject mainCamera = GameObject.Find("Main Camera");
 
@@ -27,25 +29,30 @@ public class DiggingInitializeScene : MonoBehaviour
         mainCamera.transform.position = cameraPosition;
 
         // Größe Skalieren
-        float x = DontDestroyScript.size.x;
-        float y = DontDestroyScript.size.y;
+        float x = dataStorage.size.x;
+        float y = dataStorage.size.y;
         // Werte können jeh nach Konstellation der Flagge negativ sein
-        if(x < 0){
+        if (x < 0)
+        {
             x = x * -1;
         }
-        if(y < 0){
+        if (y < 0)
+        {
             y = y * -1;
         }
 
         float factor = 1; //Kameragröße 0 gibts nicht also Vector(0,0) ist Kameragröße 1...
-        if(x < y){
+        if (x < y)
+        {
             factor = factor + y;
-        } else {
+        }
+        else
+        {
             factor = factor + x;
         }
 
         mainCamera.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * factor;
         Camera camera = mainCamera.GetComponent<Camera>();
-        camera.orthographicSize = factor * 10; 
+        camera.orthographicSize = factor * 10;
     }
 }

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using DataStorage;
 
 public class SandboxPlayerMovement : MonoBehaviour
 {
@@ -98,16 +99,16 @@ public class SandboxPlayerMovement : MonoBehaviour
         {
             canStartDigging = false;
 
-            GameObject DoNotDestroyObject = GameObject.Find("DoNotDestroyObject");
-            DontDestroy dontDestroyScript =
-                DoNotDestroyObject.GetComponent<DontDestroy>();
+            GameObject dataStorageObject = GameObject.Find("DataStorageObject");
+            DataStorageClass dataStorage =
+                dataStorageObject.GetComponent<DataStorageClass>();
 
             // Clean and Save the Data  
-            dontDestroyScript.startingPoint.x = (float)Math.Round(firstFlagPosition.x);
-            dontDestroyScript.startingPoint.y = (float)Math.Round(firstFlagPosition.y);
+            dataStorage.startingPoint.x = (float)Math.Round(firstFlagPosition.x);
+            dataStorage.startingPoint.y = (float)Math.Round(firstFlagPosition.y);
 
-            dontDestroyScript.size.x = (float)Math.Floor(secondFlagPosition.x - firstFlagPosition.x);
-            dontDestroyScript.size.y = (float)Math.Floor(secondFlagPosition.y - firstFlagPosition.y);
+            dataStorage.size.x = (float)Math.Floor(secondFlagPosition.x - firstFlagPosition.x);
+            dataStorage.size.y = (float)Math.Floor(secondFlagPosition.y - firstFlagPosition.y);
 
             // Load the new Scene
             SceneManager.LoadScene("Digging");

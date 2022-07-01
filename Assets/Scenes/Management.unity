@@ -1454,7 +1454,7 @@ GameObject:
   - component: {fileID: 1084413482}
   - component: {fileID: 1084413481}
   m_Layer: 0
-  m_Name: DoNotDestroyObject
+  m_Name: DataStorageObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1472,6 +1472,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195a272cb70379c4b97994c33df44b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exp: 0
+  manpower: 1000
+  expMultiplikator: 1
+  startingPoint: {x: 0, y: 0}
+  size: {x: 0, y: 0}
 --- !u!4 &1084413482
 Transform:
   m_ObjectHideFlags: 0

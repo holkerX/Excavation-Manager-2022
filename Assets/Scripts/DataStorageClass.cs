@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace dataStorage
+namespace DataStorage
 {
-    public class dataStorage : MonoBehaviour
+    public class DataStorageClass : MonoBehaviour
     {
         //Manager Data Input
         public int exp = 0;
