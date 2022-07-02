@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 526b18a73832db94d91fa1c21d8f3a97
   - enabled: 1
-    path: Assets/Scenes/Management.unity
-    guid: fcfbd0899febe074bb1ed1f755dbc667
+    path: Assets/Scenes/Application.unity
+    guid: dc6bdc91605957147a466e7c7e91940b
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: cd99b683f6a28834ebd61073ce57a1cc
+  - enabled: 1
+    path: Assets/Scenes/Management.unity
+    guid: fcfbd0899febe074bb1ed1f755dbc667
   - enabled: 1
     path: Assets/Scenes/Digging.unity
     guid: f8845b61f5b65ae4d82a95b7290b6d77
