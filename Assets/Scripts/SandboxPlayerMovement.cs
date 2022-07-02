@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using DataStorage;
 
-public class PlayerMovement : MonoBehaviour
+public class SandboxPlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
 
@@ -96,15 +98,20 @@ public class PlayerMovement : MonoBehaviour
         if (canStartDigging && distance < 1.5)
         {
             canStartDigging = false;
-            Vector2 rect = secondFlagPosition - firstFlagPosition;
-            Debug.Log(rect);
-            //Skalierung von Sandbox zu Ausgrabungs Scene ist noch nicht klar z.B * 2 ???
-            
-            //Camera position x
-            //firstFlagPosition - rect.x / 2
-            //Camera position y
-            //firstFlagPosition - rect.y / 2
-            //SceneManager.LoadScene("Digging");
+
+            GameObject dataStorageObject = GameObject.Find("DataStorageObject");
+            DataStorageClass dataStorage =
+                dataStorageObject.GetComponent<DataStorageClass>();
+
+            // Clean and Save the Data  
+            dataStorage.startingPoint.x = (float)Math.Round(firstFlagPosition.x);
+            dataStorage.startingPoint.y = (float)Math.Round(firstFlagPosition.y);
+
+            dataStorage.size.x = (float)Math.Floor(secondFlagPosition.x - firstFlagPosition.x);
+            dataStorage.size.y = (float)Math.Floor(secondFlagPosition.y - firstFlagPosition.y);
+
+            // Load the new Scene
+            SceneManager.LoadScene("Digging");
         }
     }
 

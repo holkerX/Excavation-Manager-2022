@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ShopManagerScript : MonoBehaviour
 {
 
-    public int[,] shopItems = new int[5,5];
+    public int[,] shopItems = new int[5, 5];
     public float money;
     public Text MoneyTXT;
     public Button tools;
@@ -28,7 +29,7 @@ public class ShopManagerScript : MonoBehaviour
         shopItems[2, 1] = 200;
         shopItems[2, 2] = 2000;
         shopItems[2, 3] = 300;
-        
+
 
         //Quantity
         shopItems[3, 1] = 0;
@@ -37,7 +38,7 @@ public class ShopManagerScript : MonoBehaviour
 
     }
 
-     void Update()
+    void Update()
     {
         //Price for tools
         shopItems[2, 4] = toolPrice;
@@ -55,7 +56,7 @@ public class ShopManagerScript : MonoBehaviour
             tools.GetComponent<Button>().interactable = true;
         }
     }
-   
+
     public void Buy()
     {
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
@@ -68,7 +69,9 @@ public class ShopManagerScript : MonoBehaviour
             ButtonRef.GetComponent<ButtonInfo>().QuantityTxt.text = shopItems[3, ButtonRef.GetComponent<ButtonInfo>().ItemID].ToString();
 
         }
+    }
 
-
+    public void startExcavation(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
