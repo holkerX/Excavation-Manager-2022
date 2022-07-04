@@ -50,6 +50,8 @@ public class DiggingToolBehaviour : MonoBehaviour
     void Start()
     {
         activeToolZoomArtifact();
+        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<DiggingCursorBehaviour>();
+        
     }
 
     void Update()
