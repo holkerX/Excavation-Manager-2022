@@ -49,6 +49,24 @@ public class SandboxPlayerMovement : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        if (movement != Vector2.zero)
+        {
+            animator.SetFloat("XInput", movement.x);
+            animator.SetFloat("YInput", movement.y);
+            animator.SetBool("IsWalking", true);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", false);
+        }
+
+        rb
+            .MovePosition(rb.position +
+            movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
     //Platziert Fagge(Rechteck um den Schnitt, Schnitte werden an den Stellen vordefiniert)
     void placeFlag()
     {
@@ -113,23 +131,5 @@ public class SandboxPlayerMovement : MonoBehaviour
             // Load the new Scene
             SceneManager.LoadScene("Digging");
         }
-    }
-
-    void FixedUpdate()
-    {
-        if (movement != Vector2.zero)
-        {
-            animator.SetFloat("XInput", movement.x);
-            animator.SetFloat("YInput", movement.y);
-            animator.SetBool("IsWalking", true);
-        }
-        else
-        {
-            animator.SetBool("IsWalking", false);
-        }
-
-        rb
-            .MovePosition(rb.position +
-            movement * moveSpeed * Time.fixedDeltaTime);
     }
 }

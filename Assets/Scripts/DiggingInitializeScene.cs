@@ -28,7 +28,8 @@ public class DiggingInitializeScene : MonoBehaviour
 
         mainCamera.transform.position = cameraPosition;
 
-        // Größe Skalieren
+        /*
+        // Kamera Größe Skalieren
         float x = dataStorage.size.x;
         float y = dataStorage.size.y;
         // Werte können jeh nach Konstellation der Flagge negativ sein
@@ -54,5 +55,6 @@ public class DiggingInitializeScene : MonoBehaviour
         mainCamera.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * factor;
         Camera camera = mainCamera.GetComponent<Camera>();
         camera.orthographicSize = factor * 10;
+        */
     }
 }
