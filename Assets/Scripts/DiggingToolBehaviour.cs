@@ -90,7 +90,9 @@ public class DiggingToolBehaviour : MonoBehaviour
             //Zoom artifact UI-Button was pressed
             if (artifact.HasTile(gridPosition))
             {
-                SceneManager.LoadScene("Artifact");
+                //TODO i ist die zuweisung des jeweiligen Artefakts
+                int artefaktId = 0;
+                SceneManager.LoadScene("Artifact " + artefaktId);
             }
         }
     }
