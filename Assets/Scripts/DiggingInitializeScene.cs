@@ -5,6 +5,11 @@ using DataStorage;
 
 public class DiggingInitializeScene : MonoBehaviour
 {
+    public float cameraPosXMin;
+    public float cameraPosXMax;
+    public float cameraPosYMin;
+    public float cameraPosYMax;
+    
     void Awake()
     {
         GameObject dataStorageObject = GameObject.Find("DataStorageObject");
@@ -14,8 +19,8 @@ public class DiggingInitializeScene : MonoBehaviour
         Debug.Log(dataStorage.startingPoint);
         // 1 zu 20 Tile Verhältnis zwischen den Szenen (2m zu 10cm pro Tile)        
         Vector2 startingPoint = dataStorage.startingPoint * 20;
-        startingPoint.x = startingPoint.x + 10;
-        startingPoint.y = startingPoint.y + 10;
+        startingPoint.x = startingPoint.x + 20;
+        startingPoint.y = startingPoint.y + 20;
 
         Vector2 scaledGridSize = dataStorage.size * 20;
 
@@ -27,6 +32,12 @@ public class DiggingInitializeScene : MonoBehaviour
         cameraPosition.y = startingPoint.y + scaledGridSize.y / 2;
 
         mainCamera.transform.position = cameraPosition;
+
+        // Min-Max Positionen setzen
+        cameraPosXMin = cameraPosition.x - scaledGridSize.x / 2;
+        cameraPosXMax = cameraPosition.x + scaledGridSize.x / 2;
+        cameraPosYMin = cameraPosition.y - scaledGridSize.y / 2;
+        cameraPosYMax = cameraPosition.y + scaledGridSize.y / 2;
 
         /*
         // Kamera Größe Skalieren

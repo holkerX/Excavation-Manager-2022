@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using DataStorage;
 
 public class ArtifactToolBehaviour : MonoBehaviour
 {
     private GameObject[] groundLayers;
 
     private GameObject[] dustLayers;
+
+    private GameObject artifact;
 
     private Texture2D cursorTexture;
 
@@ -26,6 +29,8 @@ public class ArtifactToolBehaviour : MonoBehaviour
         pattern = Vector4.zero;
         groundLayers = GameObject.FindGameObjectsWithTag("GroundLayer");
         dustLayers = GameObject.FindGameObjectsWithTag("DustLayer");
+        artifact = GameObject.Find("Artifact");
+        setExpCounter(artifact.GetComponent<ArtifactArtifact>().experiencePoints);
     }
 
     // Update is called once per frame
@@ -57,7 +62,6 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     bool checkTilesArtifact(Vector3 mousePosition)
     {
-        GameObject artifact = GameObject.Find("Artifact");
         Tilemap artifactTilemap = artifact.GetComponent<Tilemap>();
 
         Vector3Int gridPosition = artifactTilemap.WorldToCell(mousePosition);
@@ -88,10 +92,7 @@ public class ArtifactToolBehaviour : MonoBehaviour
                 artifactScript.experiencePoints - 20;
         }
 
-        //Set the Textfield in the UI
-        TMPro.TextMeshProUGUI expCounter =
-            GameObject.Find("ExpCounter").GetComponent<TMPro.TextMeshProUGUI>();
-        expCounter.text = "EXP: " + artifactScript.experiencePoints;
+        setExpCounter(artifactScript.experiencePoints);
     }
 
     bool checkTilesGround(Vector3 mousePosition)
@@ -199,8 +200,21 @@ public class ArtifactToolBehaviour : MonoBehaviour
         pattern = new Vector4(1.0f, 1.0f, 1.0f, 0.0f);
     }
 
+    public void setExpCounter(float exp){
+        //Set the Textfield in the UI
+        TMPro.TextMeshProUGUI expCounter =
+            GameObject.Find("ExpCounter").GetComponent<TMPro.TextMeshProUGUI>();
+        expCounter.text = "EXP: " + exp;
+    }
+
     public void quitScene()
     {
+        ArtifactArtifact artifakt =
+            GameObject.Find("Artifact").GetComponent<ArtifactArtifact>();
+        DataStorageClass dataStorage =
+            GameObject.Find("DataStorageObject").GetComponent<DataStorageClass>();
+
+        dataStorage.exp = dataStorage.exp + (artifakt.experiencePoints * dataStorage.expMultiplikator);
         SceneManager.LoadScene("Digging");
     }
 }
