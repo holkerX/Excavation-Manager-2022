@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using DataStorage;
+using SandboxTileManagement;
 
 public class SandboxPlayerMovement : MonoBehaviour
 {
@@ -127,6 +128,27 @@ public class SandboxPlayerMovement : MonoBehaviour
 
             dataStorage.size.x = (float)Math.Floor(secondFlagPosition.x - firstFlagPosition.x);
             dataStorage.size.y = (float)Math.Floor(secondFlagPosition.y - firstFlagPosition.y);
+
+            // Set the Number of found Artifacts
+            GameObject sandboxTileManagement = GameObject.Find("SandboxTileManagement");
+            SandboxTileManagementScript sandboxTileManagementScript =
+                sandboxTileManagement.GetComponent<SandboxTileManagementScript>();
+            int overallTileValue = 0;
+            int numberOfTiles = 0;
+            for (int i = (int) dataStorage.startingPoint.x ; i < (int) dataStorage.startingPoint.x + (int) dataStorage.size.x; i++)
+            {
+                for (int j = (int) dataStorage.startingPoint.y ; j < (int) dataStorage.startingPoint.y + (int) dataStorage.size.y; j++)
+                {
+                    overallTileValue = overallTileValue + sandboxTileManagementScript.sandboxTileValues[i][j];
+                    numberOfTiles++;
+                }
+            }
+
+            if(overallTileValue >= 4 / (numberOfTiles / 2)) {
+                dataStorage.artifactsEnabled = 4;
+            } else {
+                dataStorage.artifactsEnabled = overallTileValue;
+            }
 
             // Load the new Scene
             SceneManager.LoadScene("Digging");

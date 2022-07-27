@@ -16,6 +16,8 @@ namespace DataStorage
         public Vector2 startingPoint;
         public Vector2 size;
 
+        public int artifactsEnabled;
+
         void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
