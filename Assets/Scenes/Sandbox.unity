@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 103729822}
   - component: {fileID: 103729823}
   m_Layer: 0
-  m_Name: SandboxTileManagment
+  m_Name: SandboxTileManagement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

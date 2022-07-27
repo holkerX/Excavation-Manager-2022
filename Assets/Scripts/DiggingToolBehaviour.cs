@@ -77,7 +77,7 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     void zoomArtifact(Vector3 mousePosition)
     {
-        for (int i = 0; i < artifacts.Length; i++)
+        for (int i = 0; i < dataStorage.artifactsEnabled; i++)
         {
             // Sortiert nach Name, größere Zahl = tiefer
             Tilemap artifact =
@@ -87,7 +87,7 @@ public class DiggingToolBehaviour : MonoBehaviour
 
             Vector3Int gridPosition = artifact.WorldToCell(mousePosition);
 
-            //Zoom artifact UI-Button was pressed
+            //Check if Artifact Tile was klicked
             if (artifact.HasTile(gridPosition))
             {
                 //TODO i ist die zuweisung des jeweiligen Artefakts
@@ -161,7 +161,8 @@ public class DiggingToolBehaviour : MonoBehaviour
         setManpowerCounter(dataStorage.manpower);
     }
 
-    public void setManpowerCounter(float manpower){
+    public void setManpowerCounter(float manpower)
+    {
         //Set the Textfield in the UI
         TMPro.TextMeshProUGUI manpowerCounter =
             GameObject.Find("ManpowerCounter").GetComponent<TMPro.TextMeshProUGUI>();

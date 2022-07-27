@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DataStorage;
 
 namespace SandboxTileManagement
 {
@@ -20,24 +22,24 @@ namespace SandboxTileManagement
             * 1 = Tile noch da
             * 0 = weg
             */
-
+            sandboxTileValues = new int[100][];
+            for (int i = 0; i < 100; i++){
+                sandboxTileValues[i] = new int[50];
+            }
             initSanboxTileValues();
         }
 
         private void initSanboxTileValues()
         {
-            //50 x 100
-            sandboxTileValues[0][0] = 1;
-            sandboxTileValues[1][0] = 1;
-            sandboxTileValues[2][0] = 1;
-            sandboxTileValues[3][0] = 3;
-            sandboxTileValues[4][0] = 1;
-            sandboxTileValues[5][0] = 7;
-            sandboxTileValues[6][0] = 1;
-            sandboxTileValues[7][0] = 1;
-            sandboxTileValues[8][0] = 1;
-            sandboxTileValues[9][0] = 1;
-            sandboxTileValues[10][0] = 1;
+            System.Random rnd = new System.Random();
+            for (int i = 0; i < 100; i++)
+            {
+                for (int j = 0; j < 50; j++)
+                {
+                    //sandboxTileValues[i][j] = rnd.Next(1, 6);   // creates a number between 1 and 5
+                    sandboxTileValues[i][j] = 4;   // For testing
+                }
+            }
         }
     }
 }

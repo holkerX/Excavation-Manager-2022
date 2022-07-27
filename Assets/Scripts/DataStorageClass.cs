@@ -12,8 +12,7 @@ namespace DataStorage
         public int manpower = 1000;
         public int expMultiplikator = 1;
 
-        //Digging Scene Vector (Ausgrabungsschnitt)
-        public Vector2 startingPoint;
+        //Digging Scene (Ausgrabungsschnitt)
         public Vector2 size;
 
         public int artifactsEnabled;

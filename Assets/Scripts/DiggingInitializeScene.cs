@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,80 +10,70 @@ public class DiggingInitializeScene : MonoBehaviour
     public float cameraPosXMax;
     public float cameraPosYMin;
     public float cameraPosYMax;
-
     DataStorageClass dataStorage;
+    Vector2 scaledGridSize;
 
     void Awake()
     {
         GameObject dataStorageObject = GameObject.Find("DataStorageObject");
         dataStorage = dataStorageObject.GetComponent<DataStorageClass>();
 
-        Debug.Log(dataStorage.startingPoint);
-        // 1 zu 20 Tile Verhältnis zwischen den Szenen (2m zu 10cm pro Tile)        
-        Vector2 startingPoint = dataStorage.startingPoint * 20;
-        startingPoint.x = startingPoint.x + 10;
-        startingPoint.y = startingPoint.y + 10;
-
-        Vector2 scaledGridSize = dataStorage.size * 20;
-
-        GameObject mainCamera = GameObject.Find("Main Camera");
-
-        // Position setzten
-        Vector3 cameraPosition = mainCamera.transform.position;
-        cameraPosition.x = startingPoint.x + scaledGridSize.x / 2;
-        cameraPosition.y = startingPoint.y + scaledGridSize.y / 2;
-
-        mainCamera.transform.position = cameraPosition;
-
-        // Min-Max Positionen setzen
-        cameraPosXMin = cameraPosition.x - scaledGridSize.x / 2;
-        cameraPosXMax = cameraPosition.x + scaledGridSize.x / 2;
-        cameraPosYMin = cameraPosition.y - scaledGridSize.y / 2;
-        cameraPosYMax = cameraPosition.y + scaledGridSize.y / 2;
-
-        /*
-        // Kamera Größe Skalieren
-        float x = dataStorage.size.x;
-        float y = dataStorage.size.y;
-        // Werte können jeh nach Konstellation der Flagge negativ sein
-        if (x < 0)
-        {
-            x = x * -1;
-        }
-        if (y < 0)
-        {
-            y = y * -1;
-        }
-
-        float factor = 1; //Kameragröße 0 gibts nicht also Vector(0,0) ist Kameragröße 1...
-        if (x < y)
-        {
-            factor = factor + y;
-        }
-        else
-        {
-            factor = factor + x;
-        }
-
-        mainCamera.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * factor;
-        Camera camera = mainCamera.GetComponent<Camera>();
-        camera.orthographicSize = factor * 10;
-        */
+        // 1 zu 20 Tile Verhältnis zwischen den Szenen (2m zu 10cm pro Tile)     
+        scaledGridSize = dataStorage.size * 20;
     }
 
     void Start()
     {
+        initializeArtifacts();
+        setCameraPosition();
+    }
+
+    private void setCameraPosition()
+    {
+        // Camera Position setzten
+        GameObject mainCamera = GameObject.Find("Main Camera");
+        Vector3 cameraPosition = mainCamera.transform.position; // keep z position
+        cameraPosition.x = (scaledGridSize.x / 2);
+        cameraPosition.y = (scaledGridSize.y / 2);
+
+        mainCamera.transform.position = cameraPosition;
+
+        // Min-Max Positionen setzen
+        cameraPosXMin = (cameraPosition.x - (scaledGridSize.x / 2)) + 10;
+        cameraPosXMax = (cameraPosition.x + (scaledGridSize.x / 2)) - 10;
+        cameraPosYMin = (cameraPosition.y - (scaledGridSize.y / 2)) + 10;
+        cameraPosYMax = (cameraPosition.y + (scaledGridSize.y / 2)) - 10;
+    }
+
+    private void initializeArtifacts()
+    {
         int artEn = dataStorage.artifactsEnabled;
+        Debug.Log("Artfacts Enabled: " + artEn);
         GameObject[] artifacts = GameObject.FindGameObjectsWithTag("Artifact");
-        
+
         for (int i = 0; i < artifacts.Length; i++)
         {
-            if (artEn >= 0)
+            if (artEn > 0)
             {
                 artifacts[i].SetActive(true);
                 artEn--;
+                setArtifactPosition(artifacts[i]);
             }
-            artifacts[i].SetActive(false);
+            else
+            {
+                artifacts[i].SetActive(false);
+            }
         }
+    }
+
+    private void setArtifactPosition(GameObject artifact)
+    {
+        System.Random rnd = new System.Random();
+        Vector3 newPosition;
+        newPosition.x = rnd.Next(0, (int)scaledGridSize.x);
+        newPosition.y = rnd.Next(0, (int)scaledGridSize.y);
+        newPosition.z = 0; // Layer is controlled by Tilemap Renderer Component and is right now "hardcoded"
+        artifact.transform.position = newPosition;
+        Debug.Log("Artefact: " + artifact.name + " Is at Position: " + newPosition);
     }
 }

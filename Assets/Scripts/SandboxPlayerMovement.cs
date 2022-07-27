@@ -13,11 +13,19 @@ public class SandboxPlayerMovement : MonoBehaviour
 
     public Animator animator;
 
+    DataStorageClass dataStorage;
+
     Vector2 movement;
     bool canStartDigging = false;
     bool firstFlagPlaced = false;
     Vector2 firstFlagPosition;
     Vector2 secondFlagPosition;
+
+    void Awake()
+    {
+        GameObject dataStorageObject = GameObject.Find("DataStorageObject");
+        dataStorage = dataStorageObject.GetComponent<DataStorageClass>();
+    }
 
     void Start()
     {
@@ -118,40 +126,77 @@ public class SandboxPlayerMovement : MonoBehaviour
         {
             canStartDigging = false;
 
-            GameObject dataStorageObject = GameObject.Find("DataStorageObject");
-            DataStorageClass dataStorage =
-                dataStorageObject.GetComponent<DataStorageClass>();
+            saveSize();
+            if(dataStorage.size.x > 3|| dataStorage.size.y > 3) {
+                deleteAllFlags();
+                Debug.Log("Der Ausgrabungsschnitt ist zu Groß, die maximale Größe beträgt 3x3 2m Kacheln");
+            } else {
+                Debug.Log("Der Ausgrabungsschnitt ist " + dataStorage.size.x + "x" + dataStorage.size.y + " 2m Kacheln groß");
+                saveNumberOfArtifacts();
+                SceneManager.LoadScene("Digging");
+            }        
+        }
+    }
 
-            // Clean and Save the Data  
-            dataStorage.startingPoint.x = (float)Math.Round(firstFlagPosition.x);
-            dataStorage.startingPoint.y = (float)Math.Round(firstFlagPosition.y);
+    private void deleteAllFlags(){
+        //Clean DataStorage
+        dataStorage.size.x = 0;
+        dataStorage.size.y = 0;
 
-            dataStorage.size.x = (float)Math.Floor(secondFlagPosition.x - firstFlagPosition.x);
-            dataStorage.size.y = (float)Math.Floor(secondFlagPosition.y - firstFlagPosition.y);
+        //Delete Flag Objects
+        Destroy(GameObject.Find("flag1"));
+        Destroy(GameObject.Find("flag2"));
+    }
 
-            // Set the Number of found Artifacts
+    private void saveSize()
+    {
+        dataStorage.size.x = (float)Math.Floor(secondFlagPosition.x - firstFlagPosition.x);
+        dataStorage.size.y = (float)Math.Floor(secondFlagPosition.y - firstFlagPosition.y);
+        if(dataStorage.size.x < 0){
+            dataStorage.size.x = dataStorage.size.x * -1;
+        }
+        if(dataStorage.size.y < 0){
+            dataStorage.size.y = dataStorage.size.y * -1;
+        }
+        dataStorage.size = dataStorage.size + new Vector2(1.0f, 1.0f); //Starts counting at 1 
+    }
+    
+    private void saveNumberOfArtifacts()
+    {
+        // Set the Number of found Artifacts
             GameObject sandboxTileManagement = GameObject.Find("SandboxTileManagement");
             SandboxTileManagementScript sandboxTileManagementScript =
                 sandboxTileManagement.GetComponent<SandboxTileManagementScript>();
             int overallTileValue = 0;
             int numberOfTiles = 0;
-            for (int i = (int) dataStorage.startingPoint.x ; i < (int) dataStorage.startingPoint.x + (int) dataStorage.size.x; i++)
+            for (int i = (int)firstFlagPosition.x; i < (int)firstFlagPosition.x + (int)dataStorage.size.x; i++)
             {
-                for (int j = (int) dataStorage.startingPoint.y ; j < (int) dataStorage.startingPoint.y + (int) dataStorage.size.y; j++)
+                for (int j = (int)firstFlagPosition.y; j < (int)firstFlagPosition.y + (int)dataStorage.size.y; j++)
                 {
                     overallTileValue = overallTileValue + sandboxTileManagementScript.sandboxTileValues[i][j];
                     numberOfTiles++;
                 }
             }
 
-            if(overallTileValue >= 4 / (numberOfTiles / 2)) {
-                dataStorage.artifactsEnabled = 4;
-            } else {
+            if (numberOfTiles > 1)
+            {
+                if (overallTileValue >= 4 / (numberOfTiles / 2))
+                {
+                    dataStorage.artifactsEnabled = 4;
+                }
+                else
+                {
+                    dataStorage.artifactsEnabled = overallTileValue;
+                }
+            }
+            else
+            {
                 dataStorage.artifactsEnabled = overallTileValue;
             }
 
-            // Load the new Scene
-            SceneManager.LoadScene("Digging");
-        }
+            if (dataStorage.artifactsEnabled < 1)
+            {
+                dataStorage.artifactsEnabled = 1;
+            }
     }
 }
