@@ -90,9 +90,8 @@ public class DiggingToolBehaviour : MonoBehaviour
             //Check if Artifact Tile was klicked
             if (artifact.HasTile(gridPosition))
             {
-                //TODO i ist die zuweisung des jeweiligen Artefakts
-                int artefaktId = 0;
-                SceneManager.LoadScene("Artifact " + artefaktId);
+                //i ist die zuweisung des jeweiligen Artefakts
+                SceneManager.LoadScene("Artifact (" + i + ")");
             }
         }
     }

@@ -14,6 +14,7 @@ public class SandboxPlayerMovement : MonoBehaviour
     public Animator animator;
 
     DataStorageClass dataStorage;
+    SandboxTileManagementScript sandboxTileManagementScript;
 
     Vector2 movement;
     bool canStartDigging = false;
@@ -25,6 +26,9 @@ public class SandboxPlayerMovement : MonoBehaviour
     {
         GameObject dataStorageObject = GameObject.Find("DataStorageObject");
         dataStorage = dataStorageObject.GetComponent<DataStorageClass>();
+        GameObject sandboxTileManagement = GameObject.Find("SandboxTileManagement");
+        sandboxTileManagementScript =
+            sandboxTileManagement.GetComponent<SandboxTileManagementScript>();
     }
 
     void Start()
@@ -127,18 +131,44 @@ public class SandboxPlayerMovement : MonoBehaviour
             canStartDigging = false;
 
             saveSize();
-            if(dataStorage.size.x > 3|| dataStorage.size.y > 3) {
+            if (dataStorage.size.x > 3 || dataStorage.size.y > 3)
+            {
                 deleteAllFlags();
                 Debug.Log("Der Ausgrabungsschnitt ist zu Groß, die maximale Größe beträgt 3x3 2m Kacheln");
-            } else {
+            }
+            else
+            {
+
+                deleteTiles(); //Loch anzeigen
                 Debug.Log("Der Ausgrabungsschnitt ist " + dataStorage.size.x + "x" + dataStorage.size.y + " 2m Kacheln groß");
                 saveNumberOfArtifacts();
-                SceneManager.LoadScene("Digging");
-            }        
+
+                int number = dataStorage.digCounter;
+                dataStorage.digCounter++;
+                SceneManager.LoadScene("Digging " + number);
+            }
         }
     }
 
-    private void deleteAllFlags(){
+    //Creates the Hole in the Ground from Digging
+    private void deleteTiles()
+    {
+        /*
+        for (int i = firstFlagPosition.x; i < dataStorage.size.x; i++)
+        {
+            for (int j = firstFlagPosition.y; j < dataStorage.size.y; j++)
+            {
+                for (int k = 0; k < 3; k++)
+                {
+                    sandboxTileManagementScript.setSanboxTileIsShown(i, j, k, false);
+                }
+            }
+        }
+        */
+    }
+
+    private void deleteAllFlags()
+    {
         //Clean DataStorage
         dataStorage.size.x = 0;
         dataStorage.size.y = 0;
@@ -152,51 +182,50 @@ public class SandboxPlayerMovement : MonoBehaviour
     {
         dataStorage.size.x = (float)Math.Floor(secondFlagPosition.x - firstFlagPosition.x);
         dataStorage.size.y = (float)Math.Floor(secondFlagPosition.y - firstFlagPosition.y);
-        if(dataStorage.size.x < 0){
+        if (dataStorage.size.x < 0)
+        {
             dataStorage.size.x = dataStorage.size.x * -1;
         }
-        if(dataStorage.size.y < 0){
+        if (dataStorage.size.y < 0)
+        {
             dataStorage.size.y = dataStorage.size.y * -1;
         }
         dataStorage.size = dataStorage.size + new Vector2(1.0f, 1.0f); //Starts counting at 1 
     }
-    
+
     private void saveNumberOfArtifacts()
     {
         // Set the Number of found Artifacts
-            GameObject sandboxTileManagement = GameObject.Find("SandboxTileManagement");
-            SandboxTileManagementScript sandboxTileManagementScript =
-                sandboxTileManagement.GetComponent<SandboxTileManagementScript>();
-            int overallTileValue = 0;
-            int numberOfTiles = 0;
-            for (int i = (int)firstFlagPosition.x; i < (int)firstFlagPosition.x + (int)dataStorage.size.x; i++)
+        int overallTileValue = 0;
+        int numberOfTiles = 0;
+        for (int i = (int)firstFlagPosition.x; i < (int)firstFlagPosition.x + (int)dataStorage.size.x; i++)
+        {
+            for (int j = (int)firstFlagPosition.y; j < (int)firstFlagPosition.y + (int)dataStorage.size.y; j++)
             {
-                for (int j = (int)firstFlagPosition.y; j < (int)firstFlagPosition.y + (int)dataStorage.size.y; j++)
-                {
-                    overallTileValue = overallTileValue + sandboxTileManagementScript.sandboxTileValues[i][j];
-                    numberOfTiles++;
-                }
+                overallTileValue = overallTileValue + sandboxTileManagementScript.sandboxTileValues[i][j];
+                numberOfTiles++;
             }
+        }
 
-            if (numberOfTiles > 1)
+        if (numberOfTiles > 1)
+        {
+            if ((overallTileValue / (numberOfTiles / 2)) >= 5)
             {
-                if (overallTileValue >= 4 / (numberOfTiles / 2))
-                {
-                    dataStorage.artifactsEnabled = 4;
-                }
-                else
-                {
-                    dataStorage.artifactsEnabled = overallTileValue;
-                }
+                dataStorage.artifactsEnabled = 4;
             }
             else
             {
                 dataStorage.artifactsEnabled = overallTileValue;
             }
+        }
+        else
+        {
+            dataStorage.artifactsEnabled = overallTileValue;
+        }
 
-            if (dataStorage.artifactsEnabled < 1)
-            {
-                dataStorage.artifactsEnabled = 1;
-            }
+        if (dataStorage.artifactsEnabled < 1)
+        {
+            dataStorage.artifactsEnabled = 1;
+        }
     }
 }

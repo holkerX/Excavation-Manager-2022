@@ -883,8 +883,8 @@ GameObject:
   - component: {fileID: 406649342}
   - component: {fileID: 406649341}
   m_Layer: 0
-  m_Name: Gound
-  m_TagString: Untagged
+  m_Name: Gound (0)
+  m_TagString: GroundLayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
