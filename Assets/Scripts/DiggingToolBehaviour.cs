@@ -13,11 +13,46 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     private GameObject[] artifacts;
 
+    DataStorageClass dataStorage;
+
     private Vector4 pattern;
 
     private bool zoomArtifactActive = false;
 
     DiggingCursorBehaviour cursorBehaviour;
+
+    void Awake()
+    {
+        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<DiggingCursorBehaviour>();
+        layers = GameObject.FindGameObjectsWithTag("GroundLayer");
+        artifacts = GameObject.FindGameObjectsWithTag("Artifact");
+    }
+
+    void Start()
+    {
+        activeToolZoomArtifact();
+        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<DiggingCursorBehaviour>();
+        dataStorage = GameObject.Find("DataStorageObject").GetComponent<DataStorageClass>();
+        setManpowerCounter(dataStorage.manpower);
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            mousePosition.z = 0; //Die Tilemaps sind auf z = 0 und die Kamera bei z = -10 --> Tilemap.HasTile(mousePosition) muss bei z = 0 haben um true zu sein
+            if (zoomArtifactActive)
+            {
+                zoomArtifact(mousePosition);
+            }
+            else
+            {
+                digGround(mousePosition);
+            }
+        }
+    }
 
     public void activeToolShovel()
     {
@@ -40,41 +75,9 @@ public class DiggingToolBehaviour : MonoBehaviour
         //pattern = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
     }
 
-    void Awake()
-    {
-        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<DiggingCursorBehaviour>();
-        layers = GameObject.FindGameObjectsWithTag("GroundLayer");
-        artifacts = GameObject.FindGameObjectsWithTag("Artifact");
-    }
-
-    void Start()
-    {
-        activeToolZoomArtifact();
-        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<DiggingCursorBehaviour>();
-        
-    }
-
-    void Update()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            mousePosition.z = 0; //Die Tilemaps sind auf z = 0 und die Kamera bei z = -10 --> Tilemap.HasTile(mousePosition) muss bei z = 0 haben um true zu sein
-            if (zoomArtifactActive)
-            {
-                zoomArtifact(mousePosition);
-            }
-            else
-            {
-                digGround(mousePosition);
-            }
-        }
-    }
-
     void zoomArtifact(Vector3 mousePosition)
     {
-        for (int i = 0; i < artifacts.Length; i++)
+        for (int i = 0; i < dataStorage.artifactsEnabled; i++)
         {
             // Sortiert nach Name, größere Zahl = tiefer
             Tilemap artifact =
@@ -84,10 +87,11 @@ public class DiggingToolBehaviour : MonoBehaviour
 
             Vector3Int gridPosition = artifact.WorldToCell(mousePosition);
 
-            //Zoom artifact UI-Button was pressed
+            //Check if Artifact Tile was klicked
             if (artifact.HasTile(gridPosition))
             {
-                SceneManager.LoadScene("Artifact");
+                //i ist die zuweisung des jeweiligen Artefakts
+                SceneManager.LoadScene("Artifact (" + i + ")");
             }
         }
     }
@@ -107,7 +111,6 @@ public class DiggingToolBehaviour : MonoBehaviour
             Vector3Int gridPosition =
                 groundLayer.WorldToCell(mousePosition);
 
-            //Zoom artifact UI-Button was pressed
             if (groundLayer.HasTile(gridPosition))
             {
                 deleteTilesAtPosition(gridPosition, groundLayer);
@@ -148,21 +151,21 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     void depleteManpower()
     {
-        GameObject dataStorageObject = GameObject.Find("DataStorageObject");
-        //Get Data from Manager Ui
-        DataStorageClass dataStorage =
-            dataStorageObject.GetComponent<DataStorageClass>();
-
         if (dataStorage.manpower > 0)
         {
             dataStorage.manpower =
                 dataStorage.manpower - 1;
         }
 
+        setManpowerCounter(dataStorage.manpower);
+    }
+
+    public void setManpowerCounter(float manpower)
+    {
         //Set the Textfield in the UI
-        TMPro.TextMeshProUGUI expCounter =
+        TMPro.TextMeshProUGUI manpowerCounter =
             GameObject.Find("ManpowerCounter").GetComponent<TMPro.TextMeshProUGUI>();
-        expCounter.text = "Manpower: \n\r" + dataStorage.manpower;
+        manpowerCounter.text = "Manpower: \n\r" + manpower;
     }
 
     public void quitScene()
