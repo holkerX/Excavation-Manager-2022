@@ -99,7 +99,7 @@ public class DiggingToolBehaviour : MonoBehaviour
             if (artifact.HasTile(gridPosition))
             {
                 //i ist die zuweisung des jeweiligen Artefakts
-                SceneManager.LoadScene("Artifact (" + i + ")");
+                SceneManager.LoadScene("Artifact " + i);
             }
         }
     }
@@ -111,23 +111,22 @@ public class DiggingToolBehaviour : MonoBehaviour
         for (int i = 0; i < layers.Length - 1; i++)
         {
             // Sortiert nach Name, größere Zahl = tiefer
-            Tilemap groundLayer =
-                GameObject
-                    .Find("Ground (" + i + ")")
-                    .GetComponent<Tilemap>();
+            GameObject groundLayer = GameObject.Find("Ground (" + i + ")");
+            Tilemap groundLayerTilemap = groundLayer.GetComponent<Tilemap>();
+            TilemapRenderer groundLayerRenderer = groundLayer.GetComponent<TilemapRenderer>();
 
             Vector3Int gridPosition =
-                groundLayer.WorldToCell(mousePosition);
-            if (groundLayer.HasTile(gridPosition))
+                groundLayerTilemap.WorldToCell(mousePosition);
+            if (groundLayerTilemap.HasTile(gridPosition))
             {
-                deleteTilesAtPosition(gridPosition, groundLayer);
+                deleteTilesAtPosition(gridPosition, groundLayerTilemap, groundLayerRenderer.sortingOrder);
                 depleteManpower();
                 i = layers.Length + 1;
             }
         }
     }
 
-    void deleteTilesAtPosition(Vector3Int gridPosition, Tilemap map)
+    void deleteTilesAtPosition(Vector3Int gridPosition, Tilemap groundLayerTilemap, int sortingOrder)
     {
         Vector3Int gridPosTmp = gridPosition;
 
@@ -142,21 +141,52 @@ public class DiggingToolBehaviour : MonoBehaviour
 
                 if (pattern[i][k] == 1)
                 {
-                    if(ModifiedCounterI < 3){
+                    if (ModifiedCounterI < 3)
+                    {
                         gridPosTmp.y = gridPosTmp.y + (ModifiedCounterI - 3);
                     }
-                    if(ModifiedCounterK < 3){
+                    if (ModifiedCounterK < 3)
+                    {
                         gridPosTmp.x = gridPosTmp.x + (ModifiedCounterK - 3);
                     }
-                    if(ModifiedCounterI > 3){
+                    if (ModifiedCounterI > 3)
+                    {
                         gridPosTmp.y = gridPosTmp.y + (ModifiedCounterI - 3);
                     }
-                    if(ModifiedCounterK > 3){
+                    if (ModifiedCounterK > 3)
+                    {
                         gridPosTmp.x = gridPosTmp.x + (ModifiedCounterK - 3);
                     }
-                    map.SetTile(gridPosTmp, null);
+
+                    if (groundLayerTilemap.HasTile(gridPosTmp))
+                    {
+                        groundLayerTilemap.SetTile(gridPosTmp, null);
+                    }
+                    checkArtifactsGotHit(sortingOrder, gridPosTmp);
                 }
                 gridPosTmp = gridPosition;
+            }
+        }
+    }
+
+    void checkArtifactsGotHit(int sortingOrderGround, Vector3Int gridPosTmp)
+    {
+        for (int i = 0; i < dataStorage.artifactsEnabled; i++)
+        {
+            // Sortiert nach Name, größere Zahl = tiefer
+            GameObject artifact = GameObject
+                    .Find("Artifact (" + i + ")");
+            Tilemap artifactTilemap = artifact.GetComponent<Tilemap>();
+            TilemapRenderer artifactTilemapRenderer = artifact.GetComponent<TilemapRenderer>();
+
+            Vector3Int gridPosition =
+                artifactTilemap.WorldToCell(gridPosTmp);
+
+            //Check if Artifact was Hit
+            if (artifactTilemapRenderer.sortingOrder == (sortingOrderGround + 1)
+                && artifactTilemap.HasTile(gridPosition))
+            {
+                artifact.transform.position = new Vector3(-10, -10, 0);
             }
         }
     }

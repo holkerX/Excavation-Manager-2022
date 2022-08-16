@@ -149,7 +149,7 @@ public class ArtifactToolBehaviour : MonoBehaviour
         return false;
     }
 
-    void deleteTilesAtPosition(Vector3Int gridPosition, Tilemap map)
+    void deleteTilesAtPosition(Vector3Int gridPosition, Tilemap groundLayer)
     {
         Vector3Int gridPosTmp = gridPosition;
 
@@ -176,7 +176,8 @@ public class ArtifactToolBehaviour : MonoBehaviour
                     if(ModifiedCounterK > 3){
                         gridPosTmp.x = gridPosTmp.x + (ModifiedCounterK - 3);
                     }
-                    map.SetTile(gridPosTmp, null);
+                    groundLayer.SetTile(gridPosTmp, null);
+                    
                 }
                 gridPosTmp = gridPosition;
             }
@@ -188,16 +189,16 @@ public class ArtifactToolBehaviour : MonoBehaviour
         toolCanDamageArtifact = false;
         toolCanDig = false;
         pattern[0] = new int[] { 0, 0, 0, 0, 0 };
-        pattern[1] = new int[] { 0, 0, 0, 0, 0 };
-        pattern[2] = new int[] { 0, 0, 1, 0, 0 };
-        pattern[3] = new int[] { 0, 0, 0, 0, 0 };
+        pattern[1] = new int[] { 0, 0, 1, 1, 0 };
+        pattern[2] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[3] = new int[] { 0, 1, 1, 0, 0 };
         pattern[4] = new int[] { 0, 0, 0, 0, 0 };
     }
 
     public void activeToolDustpan()
     {
-        toolCanDamageArtifact = false;
-        toolCanDig = true;
+        toolCanDamageArtifact = true;
+        toolCanDig = false;
         pattern[0] = new int[] { 0, 0, 1, 1, 1 };
         pattern[1] = new int[] { 0, 1, 1, 1, 0 };
         pattern[2] = new int[] { 0, 1, 1, 1, 0 };
