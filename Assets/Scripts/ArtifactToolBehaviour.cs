@@ -17,7 +17,7 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     private Vector2 cursorHotspot;
 
-    private Vector4 pattern;
+    private int[][] pattern = new int[5][];
 
     private bool toolCanDamageArtifact;
 
@@ -26,7 +26,6 @@ public class ArtifactToolBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pattern = Vector4.zero;
         groundLayers = GameObject.FindGameObjectsWithTag("GroundLayer");
         dustLayers = GameObject.FindGameObjectsWithTag("DustLayer");
         artifact = GameObject.Find("Artifact");
@@ -152,30 +151,35 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     void deleteTilesAtPosition(Vector3Int gridPosition, Tilemap map)
     {
-        if (pattern == Vector4.zero)
+        Vector3Int gridPosTmp = gridPosition;
+
+        //pattern ios set by the tool -> activeToolShovel() 
+        //note that they are visualy 180 degree reversed in code
+        for (int i = 0; i < pattern.Length; i++)
         {
-            map.SetTile(gridPosition, null);
-        }
-        else
-        {
-            map.SetTile(gridPosition, null);
-            Vector3Int gridPosTmp;
+            for (int k = 0; k < pattern[i].Length; k++)
+            {
+                int ModifiedCounterI = i + 1;
+                int ModifiedCounterK = k + 1;
 
-            gridPosTmp = gridPosition;
-            gridPosTmp.x = gridPosTmp.x + (int)pattern.x;
-            map.SetTile(gridPosTmp, null);
-
-            gridPosTmp = gridPosition;
-            gridPosTmp.y = gridPosTmp.y + (int)pattern.y;
-            map.SetTile(gridPosTmp, null);
-
-            gridPosTmp = gridPosition;
-            gridPosTmp.x = gridPosTmp.x - (int)pattern.z;
-            map.SetTile(gridPosTmp, null);
-
-            gridPosTmp = gridPosition;
-            gridPosTmp.y = gridPosTmp.y - (int)pattern.w;
-            map.SetTile(gridPosTmp, null);
+                if (pattern[i][k] == 1)
+                {
+                    if(ModifiedCounterI < 3){
+                        gridPosTmp.y = gridPosTmp.y + (ModifiedCounterI - 3);
+                    }
+                    if(ModifiedCounterK < 3){
+                        gridPosTmp.x = gridPosTmp.x + (ModifiedCounterK - 3);
+                    }
+                    if(ModifiedCounterI > 3){
+                        gridPosTmp.y = gridPosTmp.y + (ModifiedCounterI - 3);
+                    }
+                    if(ModifiedCounterK > 3){
+                        gridPosTmp.x = gridPosTmp.x + (ModifiedCounterK - 3);
+                    }
+                    map.SetTile(gridPosTmp, null);
+                }
+                gridPosTmp = gridPosition;
+            }
         }
     }
 
@@ -183,21 +187,33 @@ public class ArtifactToolBehaviour : MonoBehaviour
     {
         toolCanDamageArtifact = false;
         toolCanDig = false;
-        pattern = Vector4.zero;
+        pattern[0] = new int[] { 0, 0, 0, 0, 0 };
+        pattern[1] = new int[] { 0, 0, 0, 0, 0 };
+        pattern[2] = new int[] { 0, 0, 1, 0, 0 };
+        pattern[3] = new int[] { 0, 0, 0, 0, 0 };
+        pattern[4] = new int[] { 0, 0, 0, 0, 0 };
     }
 
     public void activeToolDustpan()
     {
         toolCanDamageArtifact = false;
         toolCanDig = true;
-        pattern = new Vector4(1.0f, 0.0f, 1.0f, 0.0f);
+        pattern[0] = new int[] { 0, 0, 1, 1, 1 };
+        pattern[1] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[2] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[3] = new int[] { 0, 0, 1, 1, 0 };
+        pattern[4] = new int[] { 0, 1, 1, 1, 0 };
     }
 
     public void activeToolTrowel()
     {
         toolCanDamageArtifact = true;
         toolCanDig = true;
-        pattern = new Vector4(1.0f, 1.0f, 1.0f, 0.0f);
+        pattern[0] = new int[] { 0, 0, 0, 0, 0 };
+        pattern[1] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[2] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[3] = new int[] { 0, 0, 1, 0, 0 };
+        pattern[4] = new int[] { 0, 0, 0, 0, 0 };
     }
 
     public void setExpCounter(float exp){
