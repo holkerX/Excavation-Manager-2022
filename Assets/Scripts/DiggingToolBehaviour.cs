@@ -110,7 +110,6 @@ public class DiggingToolBehaviour : MonoBehaviour
 
             Vector3Int gridPosition =
                 groundLayer.WorldToCell(mousePosition);
-
             if (groundLayer.HasTile(gridPosition))
             {
                 deleteTilesAtPosition(gridPosition, groundLayer);
