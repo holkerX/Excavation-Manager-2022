@@ -15,7 +15,7 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     DataStorageClass dataStorage;
 
-    private Vector4 pattern;
+    private int[][] pattern = new int[5][];
 
     private bool zoomArtifactActive = false;
 
@@ -58,14 +58,22 @@ public class DiggingToolBehaviour : MonoBehaviour
     {
         zoomArtifactActive = false;
         cursorBehaviour.setCursorShovel();
-        pattern = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+        pattern[0] = new int[] { 0, 0, 0, 0, 0 };
+        pattern[1] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[2] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[3] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[4] = new int[] { 0, 0, 0, 0, 0 };
     }
 
     public void activeToolPickaxe()
     {
         zoomArtifactActive = false;
         cursorBehaviour.setCursorPickaxe();
-        pattern = new Vector4(1.0f, 0.0f, 1.0f, 0.0f);
+        pattern[0] = new int[] { 1, 1, 1, 0, 0 };
+        pattern[1] = new int[] { 1, 1, 1, 1, 0 };
+        pattern[2] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[3] = new int[] { 0, 0, 1, 1, 1 };
+        pattern[4] = new int[] { 0, 0, 0, 1, 1 };
     }
 
     public void activeToolZoomArtifact()
@@ -121,30 +129,35 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     void deleteTilesAtPosition(Vector3Int gridPosition, Tilemap map)
     {
-        if (pattern == Vector4.zero)
+        Vector3Int gridPosTmp = gridPosition;
+
+        //pattern ios set by the tool -> activeToolShovel() 
+        //note that they are visualy 180 degree reversed in code
+        for (int i = 0; i < pattern.Length; i++)
         {
-            map.SetTile(gridPosition, null);
-        }
-        else
-        {
-            map.SetTile(gridPosition, null);
-            Vector3Int gridPosTmp;
+            for (int k = 0; k < pattern[i].Length; k++)
+            {
+                int ModifiedCounterI = i + 1;
+                int ModifiedCounterK = k + 1;
 
-            gridPosTmp = gridPosition;
-            gridPosTmp.x = gridPosTmp.x + (int)Math.Floor(pattern.x);
-            map.SetTile(gridPosTmp, null);
-
-            gridPosTmp = gridPosition;
-            gridPosTmp.y = gridPosTmp.y + (int)Math.Floor(pattern.y);
-            map.SetTile(gridPosTmp, null);
-
-            gridPosTmp = gridPosition;
-            gridPosTmp.x = gridPosTmp.x - (int)Math.Floor(pattern.z);
-            map.SetTile(gridPosTmp, null);
-
-            gridPosTmp = gridPosition;
-            gridPosTmp.y = gridPosTmp.y - (int)Math.Floor(pattern.w);
-            map.SetTile(gridPosTmp, null);
+                if (pattern[i][k] == 1)
+                {
+                    if(ModifiedCounterI < 3){
+                        gridPosTmp.y = gridPosTmp.y + (ModifiedCounterI - 3);
+                    }
+                    if(ModifiedCounterK < 3){
+                        gridPosTmp.x = gridPosTmp.x + (ModifiedCounterK - 3);
+                    }
+                    if(ModifiedCounterI > 3){
+                        gridPosTmp.y = gridPosTmp.y + (ModifiedCounterI - 3);
+                    }
+                    if(ModifiedCounterK > 3){
+                        gridPosTmp.x = gridPosTmp.x + (ModifiedCounterK - 3);
+                    }
+                    map.SetTile(gridPosTmp, null);
+                }
+                gridPosTmp = gridPosition;
+            }
         }
     }
 
