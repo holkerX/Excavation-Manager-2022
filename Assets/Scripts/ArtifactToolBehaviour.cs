@@ -17,9 +17,9 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     private Vector2 cursorHotspot;
 
-    private int[][] pattern = new int[5][];
+    private GameObject dataStorage;
 
-    private bool toolCanDamageArtifact;
+    private int[][] pattern = new int[5][];
 
     private bool toolCanDig;
 
@@ -29,6 +29,7 @@ public class ArtifactToolBehaviour : MonoBehaviour
         groundLayers = GameObject.FindGameObjectsWithTag("GroundLayer");
         dustLayers = GameObject.FindGameObjectsWithTag("DustLayer");
         artifact = GameObject.Find("Artifact");
+        dataStorage = GameObject.Find("DataStorageObject");
         setExpCounter(artifact.GetComponent<ArtifactArtifact>().experiencePoints);
     }
 
@@ -51,48 +52,36 @@ public class ArtifactToolBehaviour : MonoBehaviour
         {
             if (!checkTilesGround(mousePosition))
             {
+                /*
                 if (!checkTilesArtifact(mousePosition))
                 {
 
                 }
+                */
             }
         }
     }
 
-    bool checkTilesArtifact(Vector3 mousePosition)
-    {
-        Tilemap artifactTilemap = artifact.GetComponent<Tilemap>();
-
-        Vector3Int gridPosition = artifactTilemap.WorldToCell(mousePosition);
-
-        if (artifactTilemap.HasTile(gridPosition))
+    /*
+        bool checkTilesArtifact(Vector3 mousePosition)
         {
-            if (toolCanDamageArtifact)
+            Tilemap artifactTilemap = artifact.GetComponent<Tilemap>();
+
+            Vector3Int gridPosition = artifactTilemap.WorldToCell(mousePosition);
+
+            if (artifactTilemap.HasTile(gridPosition))
             {
-                artefactDamaged(artifact);
+                if (toolCanDamageArtifact)
+                {
+                    artefactDamaged(artifact);
 
-                //Load Damaged Tile Graphics???
+                    //Load Damaged Tile Graphics???
+                }
+                return true;
             }
-            return true;
+            return false;
         }
-        return false;
-    }
-
-    void artefactDamaged(GameObject artifact)
-    {
-        //Get the Exp from the Artifact
-        ArtifactArtifact artifactScript =
-            artifact.GetComponent<ArtifactArtifact>();
-
-        //Substract Damaged Penalty
-        if (artifactScript.experiencePoints > 0)
-        {
-            artifactScript.experiencePoints =
-                artifactScript.experiencePoints - 20;
-        }
-
-        setExpCounter(artifactScript.experiencePoints);
-    }
+    */
 
     bool checkTilesGround(Vector3 mousePosition)
     {
@@ -125,31 +114,34 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     bool checkTilesDust(Vector3 mousePosition)
     {
-        for (int i = 0; i < dustLayers.Length; i++)
+        if (!toolCanDig)
         {
-            // Sortiert nach Name, größere Zahl = tiefer
-            Tilemap dustLayer =
-                GameObject.Find("Dust (" + i + ")").GetComponent<Tilemap>();
-
-            Tilemap groundLayer =
-                GameObject.Find("Ground (" + i + ")").GetComponent<Tilemap>();
-
-            Vector3Int gridPosition = dustLayer.WorldToCell(mousePosition);
-
-            if (
-                dustLayer.HasTile(gridPosition) &&
-                !groundLayer.HasTile(gridPosition)
-            )
+            for (int i = 0; i < dustLayers.Length; i++)
             {
-                deleteTilesAtPosition(gridPosition, dustLayer);
-                i = dustLayers.Length + 1;
-                return true;
+                // Sortiert nach Name, größere Zahl = tiefer
+                Tilemap dustLayer =
+                    GameObject.Find("Dust (" + i + ")").GetComponent<Tilemap>();
+
+                Tilemap groundLayer =
+                    GameObject.Find("Ground (" + i + ")").GetComponent<Tilemap>();
+
+                Vector3Int gridPosition = dustLayer.WorldToCell(mousePosition);
+
+                if (
+                    dustLayer.HasTile(gridPosition) &&
+                    !groundLayer.HasTile(gridPosition)
+                )
+                {
+                    deleteTilesAtPosition(gridPosition, dustLayer);
+                    i = dustLayers.Length + 1;
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    void deleteTilesAtPosition(Vector3Int gridPosition, Tilemap map)
+    void deleteTilesAtPosition(Vector3Int gridPosition, Tilemap groundLayer)
     {
         Vector3Int gridPosTmp = gridPosition;
 
@@ -164,19 +156,24 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
                 if (pattern[i][k] == 1)
                 {
-                    if(ModifiedCounterI < 3){
+                    if (ModifiedCounterI < 3)
+                    {
                         gridPosTmp.y = gridPosTmp.y + (ModifiedCounterI - 3);
                     }
-                    if(ModifiedCounterK < 3){
+                    if (ModifiedCounterK < 3)
+                    {
                         gridPosTmp.x = gridPosTmp.x + (ModifiedCounterK - 3);
                     }
-                    if(ModifiedCounterI > 3){
+                    if (ModifiedCounterI > 3)
+                    {
                         gridPosTmp.y = gridPosTmp.y + (ModifiedCounterI - 3);
                     }
-                    if(ModifiedCounterK > 3){
+                    if (ModifiedCounterK > 3)
+                    {
                         gridPosTmp.x = gridPosTmp.x + (ModifiedCounterK - 3);
                     }
-                    map.SetTile(gridPosTmp, null);
+                    groundLayer.SetTile(gridPosTmp, null);
+
                 }
                 gridPosTmp = gridPosition;
             }
@@ -185,18 +182,16 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     public void activeToolBrush()
     {
-        toolCanDamageArtifact = false;
         toolCanDig = false;
         pattern[0] = new int[] { 0, 0, 0, 0, 0 };
-        pattern[1] = new int[] { 0, 0, 0, 0, 0 };
-        pattern[2] = new int[] { 0, 0, 1, 0, 0 };
-        pattern[3] = new int[] { 0, 0, 0, 0, 0 };
+        pattern[1] = new int[] { 0, 0, 1, 1, 0 };
+        pattern[2] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[3] = new int[] { 0, 1, 1, 0, 0 };
         pattern[4] = new int[] { 0, 0, 0, 0, 0 };
     }
 
     public void activeToolDustpan()
     {
-        toolCanDamageArtifact = false;
         toolCanDig = true;
         pattern[0] = new int[] { 0, 0, 1, 1, 1 };
         pattern[1] = new int[] { 0, 1, 1, 1, 0 };
@@ -205,18 +200,8 @@ public class ArtifactToolBehaviour : MonoBehaviour
         pattern[4] = new int[] { 0, 1, 1, 1, 0 };
     }
 
-    public void activeToolTrowel()
+    public void setExpCounter(float exp)
     {
-        toolCanDamageArtifact = true;
-        toolCanDig = true;
-        pattern[0] = new int[] { 0, 0, 0, 0, 0 };
-        pattern[1] = new int[] { 0, 1, 1, 1, 0 };
-        pattern[2] = new int[] { 0, 1, 1, 1, 0 };
-        pattern[3] = new int[] { 0, 0, 1, 0, 0 };
-        pattern[4] = new int[] { 0, 0, 0, 0, 0 };
-    }
-
-    public void setExpCounter(float exp){
         //Set the Textfield in the UI
         TMPro.TextMeshProUGUI expCounter =
             GameObject.Find("ExpCounter").GetComponent<TMPro.TextMeshProUGUI>();
@@ -225,12 +210,13 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     public void quitScene()
     {
-        ArtifactArtifact artifakt =
-            GameObject.Find("Artifact").GetComponent<ArtifactArtifact>();
-        DataStorageClass dataStorage =
-            GameObject.Find("DataStorageObject").GetComponent<DataStorageClass>();
+        Debug.Log("heyyyyyyyyyyyyyyyyyyyyyyyyyy");
+        dataStorage = GameObject.Find("DataStorageObject");
+        DataStorageClass d = dataStorage.GetComponent<DataStorageClass>();
+        d.exp = d.exp + (artifact.GetComponent<ArtifactArtifact>().experiencePoints * d.expMultiplikator);
+        //Reload Digging Scene
+        d.activateAllObjectsInScene();
 
-        dataStorage.exp = dataStorage.exp + (artifakt.experiencePoints * dataStorage.expMultiplikator);
-        SceneManager.LoadScene("Digging");
+        SceneManager.UnloadSceneAsync("Artifact " + d.ArtifactSceneNumber);
     }
 }
