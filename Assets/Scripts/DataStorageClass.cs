@@ -16,15 +16,20 @@ namespace DataStorage
         public Vector2 size;
         public int artifactsEnabled;
         public int digCounter = 0; //Maximum 5
-        
+
         bool abraumMatrixInitialized = false;
         public int[][][] abraumMatrix;
+
+        public GameObject[] allSceneObjects;
+
+        public int ArtifactSceneNumber;
 
         void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
-            
-            if(!abraumMatrixInitialized){
+
+            if (!abraumMatrixInitialized)
+            {
                 initializeAbraumMatrix();
                 abraumMatrixInitialized = true;
             }
@@ -45,6 +50,15 @@ namespace DataStorage
                     }
                 }
             }
+        }
+
+        public void activateAllObjectsInScene()
+        {
+            for (int i = 0; i < allSceneObjects.Length; i++)
+            {
+                allSceneObjects[i].SetActive(true);
+            }
+            allSceneObjects = null;
         }
     }
 }

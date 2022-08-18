@@ -10,7 +10,7 @@ namespace CursorBehavior
         public Texture2D cursorTextureShovel;
 
         public Texture2D cursorTexturePickaxe;
-
+        public Texture2D cursorTextureTrowel;
         public Texture2D cursorTextureDefault;
 
         public Texture2D cursorTextureHoverArtifactStop;
@@ -24,6 +24,8 @@ namespace CursorBehavior
 
         private bool inspectArtifact;
 
+        public bool MouseHoversToolbox;
+
         void Awake()
         {
             cursorTexture = cursorTextureDefault;
@@ -34,6 +36,7 @@ namespace CursorBehavior
             cursorHotspot =
                 new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
             Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
+            MouseHoversToolbox = false;
         }
 
         public void setCursorDefault()
@@ -45,6 +48,8 @@ namespace CursorBehavior
                 .SetCursor(cursorTextureDefault,
                 cursorHotspot,
                 CursorMode.Auto);
+            
+            MouseHoversToolbox = true;
         }
 
         public void setCursorArtifact()
@@ -69,6 +74,7 @@ namespace CursorBehavior
                     cursorHotspot,
                     CursorMode.Auto);
             }
+            MouseHoversToolbox = false;
         }
 
         public void setCursorShovel()
@@ -80,6 +86,12 @@ namespace CursorBehavior
         public void setCursorPickaxe()
         {
             cursorTexture = cursorTexturePickaxe;
+            inspectArtifact = false;
+        }
+
+        public void setCursorTrowel()
+        {
+            cursorTexture = cursorTextureTrowel;
             inspectArtifact = false;
         }
 

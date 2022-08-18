@@ -14,6 +14,7 @@ public class DiggingToolBehaviour : MonoBehaviour
     private GameObject[] artifacts;
 
     DataStorageClass dataStorage;
+    GameObject dataStorageObject;
 
     private int[][] pattern = new int[5][];
 
@@ -32,8 +33,10 @@ public class DiggingToolBehaviour : MonoBehaviour
     {
         activeToolZoomArtifact();
         cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<DiggingCursorBehaviour>();
-        dataStorage = GameObject.Find("DataStorageObject").GetComponent<DataStorageClass>();
+        dataStorageObject = GameObject.Find("DataStorageObject");
+        dataStorage = dataStorageObject.GetComponent<DataStorageClass>();
         setManpowerCounter(dataStorage.manpower);
+        setExpCounter(dataStorage.exp);
     }
 
     void Update()
@@ -52,6 +55,8 @@ public class DiggingToolBehaviour : MonoBehaviour
                 digGround(mousePosition);
             }
         }
+
+        setExpCounter(dataStorage.exp);
     }
 
     public void activeToolShovel()
@@ -59,7 +64,7 @@ public class DiggingToolBehaviour : MonoBehaviour
         zoomArtifactActive = false;
         cursorBehaviour.setCursorShovel();
         pattern[0] = new int[] { 0, 0, 0, 0, 0 };
-        pattern[1] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[1] = new int[] { 0, 0, 1, 0, 0 };
         pattern[2] = new int[] { 0, 1, 1, 1, 0 };
         pattern[3] = new int[] { 0, 1, 1, 1, 0 };
         pattern[4] = new int[] { 0, 0, 0, 0, 0 };
@@ -69,11 +74,22 @@ public class DiggingToolBehaviour : MonoBehaviour
     {
         zoomArtifactActive = false;
         cursorBehaviour.setCursorPickaxe();
-        pattern[0] = new int[] { 1, 1, 1, 0, 0 };
-        pattern[1] = new int[] { 1, 1, 1, 1, 0 };
+        pattern[0] = new int[] { 0, 0, 1, 0, 0 };
+        pattern[1] = new int[] { 0, 0, 1, 1, 0 };
         pattern[2] = new int[] { 0, 1, 1, 1, 0 };
-        pattern[3] = new int[] { 0, 0, 1, 1, 1 };
-        pattern[4] = new int[] { 0, 0, 0, 1, 1 };
+        pattern[3] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[4] = new int[] { 0, 1, 1, 0, 0 };
+    }
+
+    public void activeToolTrowel()
+    {
+        zoomArtifactActive = false;
+        cursorBehaviour.setCursorTrowel();
+        pattern[0] = new int[] { 0, 0, 0, 0, 0 };
+        pattern[1] = new int[] { 0, 0, 0, 0, 0 };
+        pattern[2] = new int[] { 0, 0, 1, 0, 0 };
+        pattern[3] = new int[] { 0, 0, 0, 0, 0 };
+        pattern[4] = new int[] { 0, 0, 0, 0, 0 };
     }
 
     public void activeToolZoomArtifact()
@@ -98,10 +114,27 @@ public class DiggingToolBehaviour : MonoBehaviour
             //Check if Artifact Tile was klicked
             if (artifact.HasTile(gridPosition))
             {
+                //Artefakt bei Seite legen
+                artifact.transform.position = new Vector3(-10, -10, 0);
+                //Alle GameObjecte deaktivieren
+                deactivateAllObjectsInScene();
+                dataStorageObject.SetActive(true);
+
                 //i ist die zuweisung des jeweiligen Artefakts
-                SceneManager.LoadScene("Artifact " + i);
+                dataStorage.ArtifactSceneNumber = i;
+                SceneManager.LoadScene("Artifact " + i, LoadSceneMode.Additive);
             }
         }
+    }
+
+    private void deactivateAllObjectsInScene()
+    {
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        for (int i = 0; i < allObjects.Length; i++)
+        {
+            allObjects[i].SetActive(false);
+        }
+        dataStorage.allSceneObjects = allObjects;
     }
 
     void digGround(Vector3 mousePosition)
@@ -117,7 +150,7 @@ public class DiggingToolBehaviour : MonoBehaviour
 
             Vector3Int gridPosition =
                 groundLayerTilemap.WorldToCell(mousePosition);
-            if (groundLayerTilemap.HasTile(gridPosition))
+            if (groundLayerTilemap.HasTile(gridPosition) && !cursorBehaviour.MouseHoversToolbox)
             {
                 deleteTilesAtPosition(gridPosition, groundLayerTilemap, groundLayerRenderer.sortingOrder);
                 depleteManpower();
@@ -191,6 +224,22 @@ public class DiggingToolBehaviour : MonoBehaviour
         }
     }
 
+    void artefactDamaged(GameObject artifact)
+    {
+        //Get the Exp from the Artifact
+        ArtifactArtifact artifactScript =
+            artifact.GetComponent<ArtifactArtifact>();
+
+        //Substract Damaged Penalty
+        if (artifactScript.experiencePoints > 0)
+        {
+            artifactScript.experiencePoints =
+                artifactScript.experiencePoints - 20;
+        }
+
+        setExpCounter(artifactScript.experiencePoints);
+    }
+
     void depleteManpower()
     {
         if (dataStorage.manpower > 0)
@@ -208,6 +257,14 @@ public class DiggingToolBehaviour : MonoBehaviour
         TMPro.TextMeshProUGUI manpowerCounter =
             GameObject.Find("ManpowerCounter").GetComponent<TMPro.TextMeshProUGUI>();
         manpowerCounter.text = "Manpower: \n\r" + manpower;
+    }
+
+    public void setExpCounter(float exp)
+    {
+        //Set the Textfield in the UI
+        TMPro.TextMeshProUGUI expCounter =
+            GameObject.Find("ExpCounter").GetComponent<TMPro.TextMeshProUGUI>();
+        expCounter.text = "EXP: " + exp;
     }
 
     public void quitScene()
