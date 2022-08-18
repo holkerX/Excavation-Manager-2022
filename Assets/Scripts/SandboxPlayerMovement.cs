@@ -153,18 +153,32 @@ public class SandboxPlayerMovement : MonoBehaviour
     //Creates the Hole in the Ground from Digging
     private void deleteTiles()
     {
-        /*
-        for (int i = firstFlagPosition.x; i < dataStorage.size.x; i++)
+        //BIG Brain mit - und +  firstFlagPosition  / secondFlagPosition
+        int posXInt;
+        if(firstFlagPosition.x < secondFlagPosition.x){
+            posXInt = (int)Math.Floor(firstFlagPosition.x);
+        } else {
+            posXInt = (int)Math.Floor(secondFlagPosition.x);
+        }
+        int posYInt;
+        if(firstFlagPosition.y < secondFlagPosition.y){
+            posYInt = (int)Math.Floor(firstFlagPosition.y);
+        } else {
+            posYInt = (int)Math.Floor(secondFlagPosition.y);
+        }
+
+        for (int i = posXInt; i < (posXInt + dataStorage.size.x); i++)
         {
-            for (int j = firstFlagPosition.y; j < dataStorage.size.y; j++)
+            for (int j = posYInt; j < (posYInt + dataStorage.size.y); j++)
             {
                 for (int k = 0; k < 3; k++)
                 {
-                    sandboxTileManagementScript.setSanboxTileIsShown(i, j, k, false);
+                    Debug.Log("deleted " + i);
+                    sandboxTileManagementScript.setSandboxTileIsShown(i, j, k, false);
                 }
             }
         }
-        */
+
     }
 
     private void deleteAllFlags()

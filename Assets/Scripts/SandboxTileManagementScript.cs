@@ -26,11 +26,11 @@ namespace SandboxTileManagement
             {
                 sandboxTileValues[i] = new int[50];
             }
-            initSanboxTileValues();
-            //initSanboxTileIsShown(); Abraum Feature
+            initSandboxTileValues();
+            initSandboxTileIsShown(); //Abraum Feature  
         }
 
-        private void initSanboxTileValues()
+        private void initSandboxTileValues()
         {
             System.Random rnd = new System.Random();
             for (int i = 0; i < 100; i++)
@@ -43,17 +43,15 @@ namespace SandboxTileManagement
             }
         }
 
-        private void initSanboxTileIsShown()
+        private void initSandboxTileIsShown()
         {
-            dataStorage.abraumMatrix = new int[100][][];
             for (int i = 0; i < 100; i++)
             {
-                dataStorage.abraumMatrix[i] = new int[50][];
                 for (int j = 0; j < 50; j++)
                 {
-                    dataStorage.abraumMatrix[i][j] = new int[3];
                     for (int k = 0; k < 3; k++)
                     {
+                        //Debug.Log(dataStorage.abraumMatrix[i][j][k] == 0);
                         // 1 means there is a Tile, 0 means there is no Tile
                         if (dataStorage.abraumMatrix[i][j][k] == 0)
                         {
@@ -71,11 +69,14 @@ namespace SandboxTileManagement
             }
         }
 
-        public void setSanboxTileIsShown(int x, int y, int k, bool b)
+        public void setSandboxTileIsShown(int x, int y, int k, bool b)
         {
-            if(b){
+            if (b)
+            {
                 dataStorage.abraumMatrix[x][y][k] = 1;
-            } else {
+            }
+            else
+            {
                 dataStorage.abraumMatrix[x][y][k] = 0;
             }
         }
