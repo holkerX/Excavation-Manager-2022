@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 using DataStorage;
 
 public class ArtifactToolBehaviour : MonoBehaviour
@@ -23,14 +24,20 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     private bool toolCanDig;
 
-    // Start is called before the first frame update
-    void Start()
+    private int clickCounter;
+
+    void Awake()
     {
         groundLayers = GameObject.FindGameObjectsWithTag("GroundLayer");
         dustLayers = GameObject.FindGameObjectsWithTag("DustLayer");
         artifact = GameObject.Find("Artifact");
         dataStorage = GameObject.Find("DataStorageObject");
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
         setExpCounter(artifact.GetComponent<ArtifactArtifact>().experiencePoints);
+        clickCounter = 0;
     }
 
     // Update is called once per frame
@@ -43,6 +50,18 @@ public class ArtifactToolBehaviour : MonoBehaviour
             mousePosition.z = 0; //Die Tilemaps sind auf z = 0 und die Kamera bei z = -10 --> Tilemap.HasTile(mousePosition) muss bei z = 0 haben um true zu sein
 
             useActiveTool(mousePosition);
+
+            checkArtifactIsCleaned();
+        }
+    }
+
+    private void checkArtifactIsCleaned()
+    {
+        //Quick and Dirty
+        clickCounter++;
+        if (clickCounter > 10)
+        {
+            GameObject.Find("ButtonQuit").GetComponent<Button>().interactable = true;
         }
     }
 
