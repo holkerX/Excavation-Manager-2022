@@ -8,7 +8,6 @@ using TMPro;
 
 public class ShopManagerScript : MonoBehaviour
 {
-
     public int[,] shopItems = new int[5, 5];
     public float money;
     public Text MoneyTXT;
