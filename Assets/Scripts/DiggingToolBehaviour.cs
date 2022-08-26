@@ -20,11 +20,11 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     private bool zoomArtifactActive = false;
 
-    DiggingCursorBehaviour cursorBehaviour;
+    CursorBehaviour cursorBehaviour;
 
     void Awake()
     {
-        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<DiggingCursorBehaviour>();
+        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<CursorBehaviour>();
         layers = GameObject.FindGameObjectsWithTag("GroundLayer");
         artifacts = GameObject.FindGameObjectsWithTag("Artifact");
     }
@@ -32,7 +32,7 @@ public class DiggingToolBehaviour : MonoBehaviour
     void Start()
     {
         activeToolZoomArtifact();
-        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<DiggingCursorBehaviour>();
+        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<CursorBehaviour>();
         dataStorageObject = GameObject.Find("DataStorageObject");
         dataStorage = dataStorageObject.GetComponent<DataStorageClass>();
         setManpowerCounter(dataStorage.manpower);

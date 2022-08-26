@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using CursorBehavior;
 using DataStorage;
 
 public class ArtifactToolBehaviour : MonoBehaviour
@@ -19,6 +20,8 @@ public class ArtifactToolBehaviour : MonoBehaviour
     private Vector2 cursorHotspot;
 
     private GameObject dataStorage;
+
+    CursorBehaviour cursorBehaviour;
 
     private int[][] pattern = new int[5][];
 
@@ -36,6 +39,7 @@ public class ArtifactToolBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<CursorBehaviour>();
         setExpCounter(artifact.GetComponent<ArtifactArtifact>().experiencePoints);
         clickCounter = 0;
     }
@@ -53,6 +57,28 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
             checkArtifactIsCleaned();
         }
+    }
+
+    public void activeToolBrush()
+    {
+        toolCanDig = false;
+        cursorBehaviour.setCursorBrush();
+        pattern[0] = new int[] { 0, 0, 0, 0, 0 };
+        pattern[1] = new int[] { 0, 0, 1, 1, 0 };
+        pattern[2] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[3] = new int[] { 0, 1, 1, 0, 0 };
+        pattern[4] = new int[] { 0, 0, 0, 0, 0 };
+    }
+
+    public void activeToolDustpan()
+    {
+        toolCanDig = true;
+        cursorBehaviour.setCursorDustpan();
+        pattern[0] = new int[] { 0, 0, 1, 1, 1 };
+        pattern[1] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[2] = new int[] { 0, 1, 1, 1, 0 };
+        pattern[3] = new int[] { 0, 0, 1, 1, 0 };
+        pattern[4] = new int[] { 0, 1, 1, 1, 0 };
     }
 
     private void checkArtifactIsCleaned()
@@ -197,26 +223,6 @@ public class ArtifactToolBehaviour : MonoBehaviour
                 gridPosTmp = gridPosition;
             }
         }
-    }
-
-    public void activeToolBrush()
-    {
-        toolCanDig = false;
-        pattern[0] = new int[] { 0, 0, 0, 0, 0 };
-        pattern[1] = new int[] { 0, 0, 1, 1, 0 };
-        pattern[2] = new int[] { 0, 1, 1, 1, 0 };
-        pattern[3] = new int[] { 0, 1, 1, 0, 0 };
-        pattern[4] = new int[] { 0, 0, 0, 0, 0 };
-    }
-
-    public void activeToolDustpan()
-    {
-        toolCanDig = true;
-        pattern[0] = new int[] { 0, 0, 1, 1, 1 };
-        pattern[1] = new int[] { 0, 1, 1, 1, 0 };
-        pattern[2] = new int[] { 0, 1, 1, 1, 0 };
-        pattern[3] = new int[] { 0, 0, 1, 1, 0 };
-        pattern[4] = new int[] { 0, 1, 1, 1, 0 };
     }
 
     public void setExpCounter(float exp)

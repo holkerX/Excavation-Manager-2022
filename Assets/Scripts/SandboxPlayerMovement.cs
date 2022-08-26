@@ -22,6 +22,9 @@ public class SandboxPlayerMovement : MonoBehaviour
     Vector2 firstFlagPosition;
     Vector2 secondFlagPosition;
 
+    TMPro.TextMeshProUGUI infoBox;
+    TMPro.TextMeshProUGUI expCounter;
+
     void Awake()
     {
         GameObject dataStorageObject = GameObject.Find("DataStorageObject");
@@ -33,6 +36,12 @@ public class SandboxPlayerMovement : MonoBehaviour
 
     void Start()
     {
+        expCounter =
+            GameObject.Find("ExpCounter").GetComponent<TMPro.TextMeshProUGUI>();
+        expCounter.text = "EXP: " + dataStorage.exp;
+
+        infoBox = GameObject.Find("InfoBox").GetComponent<TMPro.TextMeshProUGUI>();
+        infoBox.text = "Go outside the Base and press SPACE to place Flags";
     }
 
     // Update is called once per frame
@@ -84,32 +93,41 @@ public class SandboxPlayerMovement : MonoBehaviour
     void placeFlag()
     {
         Vector3 playerPosition = GameObject.Find("Player").transform.position;
-        Tilemap tilemap = GameObject.Find("Flags").GetComponent<Tilemap>();
 
-        Sprite sprite = Resources.Load<Sprite>("Flag");
-
-        if (firstFlagPlaced)
+        if ((playerPosition.x > 22 && playerPosition.x < 32) && (playerPosition.y > 11 && playerPosition.y < 17))
         {
-            createFlagObject("flag2", playerPosition);
+            infoBox.text = "Don't place the Flags into the Base!!!";
         }
         else
         {
-            createFlagObject("flag1", playerPosition);
-        }
+            Tilemap tilemap = GameObject.Find("Flags").GetComponent<Tilemap>();
+            Sprite sprite = Resources.Load<Sprite>("Flag");
 
-        if (firstFlagPlaced)
-        {
-            secondFlagPosition.x = playerPosition.x;
-            secondFlagPosition.y = playerPosition.y;
-            firstFlagPlaced = false;
-            canStartDigging = true;
-        }
-        else
-        {
-            firstFlagPosition.x = playerPosition.x;
-            firstFlagPosition.y = playerPosition.y;
-            firstFlagPlaced = true;
-            canStartDigging = false;
+            if (firstFlagPlaced)
+            {
+                createFlagObject("flag2", playerPosition);
+                infoBox.text = "Go back to the Base and press ENTER at the Table to start digging.";
+            }
+            else
+            {
+                createFlagObject("flag1", playerPosition);
+                infoBox.text = "First Flag placed, go place a second one.";
+            }
+
+            if (firstFlagPlaced)
+            {
+                secondFlagPosition.x = playerPosition.x;
+                secondFlagPosition.y = playerPosition.y;
+                firstFlagPlaced = false;
+                canStartDigging = true;
+            }
+            else
+            {
+                firstFlagPosition.x = playerPosition.x;
+                firstFlagPosition.y = playerPosition.y;
+                firstFlagPlaced = true;
+                canStartDigging = false;
+            }
         }
     }
 
@@ -134,13 +152,13 @@ public class SandboxPlayerMovement : MonoBehaviour
             if (dataStorage.size.x > 3 || dataStorage.size.y > 3)
             {
                 deleteAllFlags();
-                Debug.Log("Der Ausgrabungsschnitt ist zu Groß, die maximale Größe beträgt 3x3 2m Kacheln");
+                infoBox.text = "Der Ausgrabungsschnitt ist zu Groß, die maximale Größe beträgt 3x3 Kacheln!!!";
             }
             else
             {
 
                 deleteTiles(); //Loch anzeigen
-                Debug.Log("Der Ausgrabungsschnitt ist " + dataStorage.size.x + "x" + dataStorage.size.y + " 2m Kacheln groß");
+                //infoBox.text = "Der Ausgrabungsschnitt ist " + dataStorage.size.x + "x" + dataStorage.size.y + " 2m Kacheln groß";
                 saveNumberOfArtifacts();
 
                 int number = dataStorage.digCounter;
@@ -155,15 +173,21 @@ public class SandboxPlayerMovement : MonoBehaviour
     {
         //BIG Brain mit - und +  firstFlagPosition  / secondFlagPosition
         int posXInt;
-        if(firstFlagPosition.x < secondFlagPosition.x){
+        if (firstFlagPosition.x < secondFlagPosition.x)
+        {
             posXInt = (int)Math.Floor(firstFlagPosition.x);
-        } else {
+        }
+        else
+        {
             posXInt = (int)Math.Floor(secondFlagPosition.x);
         }
         int posYInt;
-        if(firstFlagPosition.y < secondFlagPosition.y){
+        if (firstFlagPosition.y < secondFlagPosition.y)
+        {
             posYInt = (int)Math.Floor(firstFlagPosition.y);
-        } else {
+        }
+        else
+        {
             posYInt = (int)Math.Floor(secondFlagPosition.y);
         }
 

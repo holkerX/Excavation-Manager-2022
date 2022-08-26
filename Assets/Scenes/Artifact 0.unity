@@ -123,6 +123,60 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &8372997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8372999}
+  - component: {fileID: 8372998}
+  m_Layer: 0
+  m_Name: CursorBehaviourSkript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &8372998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8372997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25acf5993c1a8a4cab57052dcf5e2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTextureShovel: {fileID: 2800000, guid: 428d5c2635ae5404ca83120811921216, type: 3}
+  cursorTexturePickaxe: {fileID: 2800000, guid: 428d5c2635ae5404ca83120811921216, type: 3}
+  cursorTextureTrowel: {fileID: 2800000, guid: 428d5c2635ae5404ca83120811921216, type: 3}
+  cursorTextureDustpan: {fileID: 2800000, guid: 428d5c2635ae5404ca83120811921216, type: 3}
+  cursorTextureBrush: {fileID: 2800000, guid: 428d5c2635ae5404ca83120811921216, type: 3}
+  cursorTextureDefault: {fileID: 2800000, guid: 98e0d2b49465d5b43994573a681de87c, type: 3}
+  cursorTextureHoverArtifactStop: {fileID: 2800000, guid: 1ae06cc0dafcd1d48904e91fa9985875, type: 3}
+  cursorTextureHoverArtifactSelect: {fileID: 2800000, guid: b9b08f6a5db85f845b51b3d004259e98, type: 3}
+  cursorTextureZoomArtifact: {fileID: 2800000, guid: 98e0d2b49465d5b43994573a681de87c, type: 3}
+  MouseHoversToolbox: 0
+--- !u!4 &8372999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8372997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10, y: -8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &361860000
 GameObject:
   m_ObjectHideFlags: 0
@@ -7056,7 +7110,7 @@ GameObject:
   - component: {fileID: 1340709581}
   - component: {fileID: 1340709580}
   - component: {fileID: 1340709579}
-  - component: {fileID: 1340709578}
+  - component: {fileID: 1340709582}
   m_Layer: 0
   m_Name: Dust (0)
   m_TagString: DustLayer
@@ -7079,18 +7133,6 @@ Transform:
   m_Father: {fileID: 1454939735}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1340709578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340709576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 358c85270000dbf4dbab68ad97a084fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1340709579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13767,6 +13809,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1340709582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340709576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3a11565bec2ce4ba53032fa90cc16a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1390582912
 GameObject:
   m_ObjectHideFlags: 0
@@ -20827,7 +20881,7 @@ MonoBehaviour:
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 5
+    m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}

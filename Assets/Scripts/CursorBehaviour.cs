@@ -4,13 +4,15 @@ using UnityEngine;
 
 namespace CursorBehavior
 {
-    public class DiggingCursorBehaviour : MonoBehaviour
+    public class CursorBehaviour : MonoBehaviour
     {
         //Cursor textures
         public Texture2D cursorTextureShovel;
 
         public Texture2D cursorTexturePickaxe;
         public Texture2D cursorTextureTrowel;
+        public Texture2D cursorTextureDustpan;
+        public Texture2D cursorTextureBrush;
         public Texture2D cursorTextureDefault;
 
         public Texture2D cursorTextureHoverArtifactStop;
@@ -48,7 +50,7 @@ namespace CursorBehavior
                 .SetCursor(cursorTextureDefault,
                 cursorHotspot,
                 CursorMode.Auto);
-            
+
             MouseHoversToolbox = true;
         }
 
@@ -92,6 +94,18 @@ namespace CursorBehavior
         public void setCursorTrowel()
         {
             cursorTexture = cursorTextureTrowel;
+            inspectArtifact = false;
+        }
+
+        public void setCursorDustpan()
+        {
+            cursorTexture = cursorTextureDustpan;
+            inspectArtifact = false;
+        }
+
+        public void setCursorBrush()
+        {
+            cursorTexture = cursorTextureBrush;
             inspectArtifact = false;
         }
 
