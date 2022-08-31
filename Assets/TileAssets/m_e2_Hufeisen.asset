@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: m_e2_Hufeisen
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 978ac98698b01aa4a8a2f300cb27d426, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d32bdf7f8bdc3944fb2180f44de7fbc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
