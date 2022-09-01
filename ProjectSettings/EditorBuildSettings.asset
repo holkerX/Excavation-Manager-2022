@@ -24,6 +24,171 @@ EditorBuildSettings:
     path: Assets/Scenes/Digging 0.unity
     guid: f8845b61f5b65ae4d82a95b7290b6d77
   - enabled: 1
-    path: Assets/Scenes/Artifact 0.unity
+    path: Assets/Scenes/Artifacts/Artifact 0.unity
     guid: 63c27656a22ab9e43aa6e6c644e8ff99
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 1.unity
+    guid: a36a410f776092d48b2f28ebd258d75c
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 2.unity
+    guid: 1bb1fc7ec7f7157488db993f3b45eeb7
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 3.unity
+    guid: 2391b849ad4c0cd4ea5b9d3c17fd24cf
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 4.unity
+    guid: b5b034f27c6e06b4388da23cf5880e11
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 5.unity
+    guid: e06431fe5cb16564298ce88a64efcd01
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 6.unity
+    guid: ea233eb441f4aa543880decdaad55d07
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 7.unity
+    guid: b4ca17aefb6fdb54cace369488159f95
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 8.unity
+    guid: ad164dd43e9f43841ae2ae2d417e213e
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 9.unity
+    guid: a79c295b98692b74a9e41b16097af6ae
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 10.unity
+    guid: 84acebdb08d05044da79adf1d5216783
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 11.unity
+    guid: 6814d9e1aabf98c408c3619e7b35d012
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 12.unity
+    guid: 21884646112f4224baad03a92861fa55
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 13.unity
+    guid: f8ce50fa16d9c7547b005539e3ee633f
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 14.unity
+    guid: f193d8f0f77b54b41ba7ea211d2d4641
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 15.unity
+    guid: 517735b5b91d94445aa605bf1e51753d
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 16.unity
+    guid: 3235d6274a7b67747a70747aa3c5e076
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 17.unity
+    guid: 429c3a9baf6c2cc4a9f0390ea5b4d8bc
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 18.unity
+    guid: 35ce7f98905bbe140a4d9ad5c97d3d2e
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 19.unity
+    guid: e6d9598edc6e17e47ae0561bd33afd9c
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 20.unity
+    guid: c874be29e79a5354ca40a6e6d82ba088
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 21.unity
+    guid: 216596ed4c9d91443b01a822c9491659
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 22.unity
+    guid: b17327ee1a89c8e45acf55012e16402c
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 23.unity
+    guid: a033ffc587dbfc846808495d6dd096e1
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 24.unity
+    guid: c6383180d65a1384f9ce825110e7aaab
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 25.unity
+    guid: c3b126eb3038c9149a208118f11bfd9f
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 26.unity
+    guid: d444377dde4daa844a96892ac95616c0
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 27.unity
+    guid: ccb76e842787d0c4583e0797c500f53c
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 28.unity
+    guid: e94946688ff0ce448a694103b6432375
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 29.unity
+    guid: 25d7e0b031d67494bae0a5a73d125e60
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 30.unity
+    guid: f850af4052cc63648a6db3a0bb01b4e4
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 31.unity
+    guid: 048bdb7cb0b93a547973f6fca346defa
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 32.unity
+    guid: 5cc9820164f0d7a40898660f9cb64cc6
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 33.unity
+    guid: 8e040a32e9ea3974597b20fa97adb74a
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 34.unity
+    guid: 40c1b577be9cf2c409c8e2ec711f816d
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 35.unity
+    guid: a1868bb9dfbaeda40a4a53fb5244847f
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 36.unity
+    guid: 1ef81cfe609a47f4bb55f7b9ac86d4a5
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 37.unity
+    guid: 8f0cf2d4ed26a1e43b9f11da82ae9519
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 38.unity
+    guid: 48ed7a9295299ee4ba62a873acb3b3df
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 39.unity
+    guid: 675bf0718c1875c41beb1ee50f957bca
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 40.unity
+    guid: 04138724d4b8ba8429104e533f044751
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 41.unity
+    guid: ab229e31c01d038439801919c0396e0e
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 42.unity
+    guid: 5890c92cf02dfd347b2f09aa031339c2
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 43.unity
+    guid: 0831773814d0b9e42887eaec7572e55b
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 44.unity
+    guid: 17fa8dc90fcfe47428019df4354d34a1
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 45.unity
+    guid: a454909d0f6de5c4ab4852750c804df0
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 46.unity
+    guid: a64800bee48a0b54cbe6488b3cfff996
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 47.unity
+    guid: 7bf283bad8276c24e8f1a3430b84ca5d
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 48.unity
+    guid: 7a5f73d815ef20c40b3f542bf94d9e27
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 49.unity
+    guid: 68c12fe02b1cdca47b8c398c56d2aac3
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 50.unity
+    guid: 7f4ea81451bb3cb47a328b9d58d78c1f
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 51.unity
+    guid: a6d21929a7c2f234ca47910334f7c46d
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 52.unity
+    guid: 8f7fc31e7f9e3b946a89ec0dcd1e1d53
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 53.unity
+    guid: cf7ee6eb6ec2df34b85ac08a1e1f42e5
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 54.unity
+    guid: 180c1a6806ada1c4484c525336f68734
+  - enabled: 1
+    path: Assets/Scenes/Artifacts/Artifact 55.unity
+    guid: b59913e9dabe03b449f39634dbba0e9f
   m_configObjects: {}

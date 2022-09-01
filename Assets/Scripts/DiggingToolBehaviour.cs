@@ -20,11 +20,11 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     private bool zoomArtifactActive = false;
 
-    DiggingCursorBehaviour cursorBehaviour;
+    CursorBehaviour cursorBehaviour;
 
     void Awake()
     {
-        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<DiggingCursorBehaviour>();
+        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<CursorBehaviour>();
         layers = GameObject.FindGameObjectsWithTag("GroundLayer");
         artifacts = GameObject.FindGameObjectsWithTag("Artifact");
     }
@@ -32,7 +32,7 @@ public class DiggingToolBehaviour : MonoBehaviour
     void Start()
     {
         activeToolZoomArtifact();
-        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<DiggingCursorBehaviour>();
+        cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<CursorBehaviour>();
         dataStorageObject = GameObject.Find("DataStorageObject");
         dataStorage = dataStorageObject.GetComponent<DataStorageClass>();
         setManpowerCounter(dataStorage.manpower);
@@ -101,13 +101,11 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     void zoomArtifact(Vector3 mousePosition)
     {
-        for (int i = 0; i < dataStorage.artifactsEnabled; i++)
+        GameObject[] artifacts = GameObject.FindGameObjectsWithTag("Artifact");
+        for (int i = 0; i < artifacts.Length; i++)
         {
             // Sortiert nach Name, größere Zahl = tiefer
-            Tilemap artifact =
-                GameObject
-                    .Find("Artifact (" + i + ")")
-                    .GetComponent<Tilemap>();
+            Tilemap artifact = artifacts[i].GetComponent<Tilemap>();
 
             Vector3Int gridPosition = artifact.WorldToCell(mousePosition);
 
@@ -120,9 +118,12 @@ public class DiggingToolBehaviour : MonoBehaviour
                 deactivateAllObjectsInScene();
                 dataStorageObject.SetActive(true);
 
-                //i ist die zuweisung des jeweiligen Artefakts
-                dataStorage.ArtifactSceneNumber = i;
-                SceneManager.LoadScene("Artifact " + i, LoadSceneMode.Additive);
+                //tmp[0] ist die zuweisung der jeweiligen Artefakt Nummer
+                String[] tmp = artifacts[i].name.Split("(");
+                tmp = tmp[1].Split(")");
+                dataStorage.ArtifactSceneNumber = Int32.Parse(tmp[0]);
+                i = artifacts.Length;
+                SceneManager.LoadScene("Artifact " + dataStorage.ArtifactSceneNumber, LoadSceneMode.Additive);
             }
         }
     }
@@ -204,13 +205,11 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     void checkArtifactsGotHit(int sortingOrderGround, Vector3Int gridPosTmp)
     {
-        for (int i = 0; i < dataStorage.artifactsEnabled; i++)
+        GameObject[] artifacts = GameObject.FindGameObjectsWithTag("Artifact");
+        for (int i = 0; i < artifacts.Length; i++)
         {
-            // Sortiert nach Name, größere Zahl = tiefer
-            GameObject artifact = GameObject
-                    .Find("Artifact (" + i + ")");
-            Tilemap artifactTilemap = artifact.GetComponent<Tilemap>();
-            TilemapRenderer artifactTilemapRenderer = artifact.GetComponent<TilemapRenderer>();
+            Tilemap artifactTilemap = artifacts[i].GetComponent<Tilemap>();
+            TilemapRenderer artifactTilemapRenderer = artifacts[i].GetComponent<TilemapRenderer>();
 
             Vector3Int gridPosition =
                 artifactTilemap.WorldToCell(gridPosTmp);
@@ -219,7 +218,7 @@ public class DiggingToolBehaviour : MonoBehaviour
             if (artifactTilemapRenderer.sortingOrder == (sortingOrderGround + 1)
                 && artifactTilemap.HasTile(gridPosition))
             {
-                artifact.transform.position = new Vector3(-10, -10, 0);
+                artifacts[i].transform.position = new Vector3(-10, -10, 0); // hide Artifact "destroyed"
             }
         }
     }

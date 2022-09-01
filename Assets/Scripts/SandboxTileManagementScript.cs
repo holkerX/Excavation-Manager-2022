@@ -38,7 +38,7 @@ namespace SandboxTileManagement
                 for (int j = 0; j < 50; j++)
                 {
                     sandboxTileValues[i][j] = rnd.Next(1, 6);   // creates a number between 1 and 5
-                    //sandboxTileValues[i][j] = 4;   // For testing
+                    //sandboxTileValues[i][j] = 10;   // For testing
                 }
             }
         }
