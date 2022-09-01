@@ -160,10 +160,7 @@ public class SandboxPlayerMovement : MonoBehaviour
                 deleteTiles(); //Loch anzeigen
                 //infoBox.text = "Der Ausgrabungsschnitt ist " + dataStorage.size.x + "x" + dataStorage.size.y + " 2m Kacheln groß";
                 saveNumberOfArtifacts();
-
-                int number = dataStorage.digCounter;
-                dataStorage.digCounter++;
-                SceneManager.LoadScene("Digging " + number);
+                SceneManager.LoadScene("Digging 0");
             }
         }
     }
@@ -171,7 +168,6 @@ public class SandboxPlayerMovement : MonoBehaviour
     //Creates the Hole in the Ground from Digging
     private void deleteTiles()
     {
-        //BIG Brain mit - und +  firstFlagPosition  / secondFlagPosition
         int posXInt;
         if (firstFlagPosition.x < secondFlagPosition.x)
         {
@@ -197,7 +193,6 @@ public class SandboxPlayerMovement : MonoBehaviour
             {
                 for (int k = 0; k < 3; k++)
                 {
-                    Debug.Log("deleted " + i);
                     sandboxTileManagementScript.setSandboxTileIsShown(i, j, k, false);
                 }
             }
@@ -247,9 +242,9 @@ public class SandboxPlayerMovement : MonoBehaviour
 
         if (numberOfTiles > 1)
         {
-            if ((overallTileValue / (numberOfTiles / 2)) >= 5)
+            if (((overallTileValue / numberOfTiles) * 2.5) >= 10)
             {
-                dataStorage.artifactsEnabled = 4;
+                dataStorage.artifactsEnabled = 10;
             }
             else
             {

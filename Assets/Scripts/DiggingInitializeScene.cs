@@ -47,23 +47,21 @@ public class DiggingInitializeScene : MonoBehaviour
 
     private void initializeArtifacts()
     {
-        int artEn = dataStorage.artifactsEnabled;
-        Debug.Log("Artfacts Enabled: " + artEn);
         GameObject[] artifacts = GameObject.FindGameObjectsWithTag("Artifact");
-
         for (int i = 0; i < artifacts.Length; i++)
         {
-            if (artEn > 0)
-            {
-                artifacts[i].SetActive(true);
-                artEn--;
-                setArtifactPosition(artifacts[i]);
-            }
-            else
-            {
-                artifacts[i].SetActive(false);
-            }
+            artifacts[i].SetActive(false);
         }
+
+        int artifactsEnabled = dataStorage.artifactsEnabled;
+        System.Random rnd = new System.Random();
+        for (int j = artifactsEnabled; j >= 0; j--)
+        {
+            int tmp = rnd.Next(0, artifacts.Length);
+            artifacts[tmp].SetActive(true);
+            setArtifactPosition(artifacts[tmp]);
+        }
+        Debug.Log("Artifacts Enabled: " + dataStorage.artifactsEnabled);
     }
 
     private void setArtifactPosition(GameObject artifact)

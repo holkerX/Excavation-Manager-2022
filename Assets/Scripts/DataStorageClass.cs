@@ -15,8 +15,6 @@ namespace DataStorage
         //Digging Scene (Ausgrabungsschnitt)
         public Vector2 size;
         public int artifactsEnabled;
-        public int digCounter = 0; //Maximum 5
-
         bool abraumMatrixInitialized = false;
         public int[][][] abraumMatrix;
 
