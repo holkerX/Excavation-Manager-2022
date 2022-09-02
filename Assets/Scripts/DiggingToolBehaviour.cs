@@ -268,6 +268,6 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     public void quitScene()
     {
-        SceneManager.LoadScene("Sandbox");
+        SceneManager.LoadScene("Sandbox 0");
     }
 }
