@@ -16,6 +16,9 @@ public class SandboxPlayerMovement : MonoBehaviour
     DataStorageClass dataStorage;
     SandboxTileManagementScript sandboxTileManagementScript;
 
+    GameObject tableMenu;
+    GameObject pauseMenu;
+
     Vector2 movement;
     bool canStartDigging = false;
     bool firstFlagPlaced = false;
@@ -32,6 +35,8 @@ public class SandboxPlayerMovement : MonoBehaviour
         GameObject sandboxTileManagement = GameObject.Find("SandboxTileManagement");
         sandboxTileManagementScript =
             sandboxTileManagement.GetComponent<SandboxTileManagementScript>();
+        tableMenu = GameObject.Find("TableMenu");
+        pauseMenu = GameObject.Find("PauseMenu");
     }
 
     void Start()
@@ -42,6 +47,8 @@ public class SandboxPlayerMovement : MonoBehaviour
 
         infoBox = GameObject.Find("InfoBox").GetComponent<TMPro.TextMeshProUGUI>();
         infoBox.text = "Go outside the Base and press SPACE to place Flags";
+        tableMenu.SetActive(false);
+        pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -69,6 +76,22 @@ public class SandboxPlayerMovement : MonoBehaviour
         {
             checkPlayerAtDesk();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //Quick and Dirty Menu with "Game freeze"
+            if (pauseMenu.activeSelf)
+            {
+                Time.timeScale = 1;
+                pauseMenu.SetActive(false);
+            }
+            else
+            {
+                Time.timeScale = 0;
+                pauseMenu.SetActive(true);
+            }
+
+        }
     }
 
     void FixedUpdate()
@@ -83,10 +106,7 @@ public class SandboxPlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsWalking", false);
         }
-
-        rb
-            .MovePosition(rb.position +
-            movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
     //Platziert Fagge(Rechteck um den Schnitt, Schnitte werden an den Stellen vordefiniert)
@@ -156,11 +176,12 @@ public class SandboxPlayerMovement : MonoBehaviour
             }
             else
             {
-
                 deleteTiles(); //Loch anzeigen
                 //infoBox.text = "Der Ausgrabungsschnitt ist " + dataStorage.size.x + "x" + dataStorage.size.y + " 2m Kacheln groß";
                 saveNumberOfArtifacts();
-                SceneManager.LoadScene("Digging 0");
+                //SceneManager.LoadScene("Digging 0");
+                Time.timeScale = 0;
+                tableMenu.SetActive(true);
             }
         }
     }

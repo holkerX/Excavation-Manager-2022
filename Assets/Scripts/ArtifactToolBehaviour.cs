@@ -235,13 +235,12 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     public void quitScene()
     {
-        Debug.Log("heyyyyyyyyyyyyyyyyyyyyyyyyyy");
         dataStorage = GameObject.Find("DataStorageObject");
         DataStorageClass d = dataStorage.GetComponent<DataStorageClass>();
         d.exp = d.exp + (artifact.GetComponent<ArtifactArtifact>().experiencePoints * d.expMultiplikator);
-        //Reload Digging Scene
-        d.activateAllObjectsInScene();
 
         SceneManager.UnloadSceneAsync("Artifact " + d.ArtifactSceneNumber);
+        //Reload Digging Scene
+        d.activateAllObjectsInScene();
     }
 }
