@@ -14,10 +14,34 @@ public class FileDataHandler
         this.dataFileName = dataFileName;
         this.dataDirPath = dataDirPath;
     }
-    /*
+
     public GameData Load()
     {
+        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        GameData loadedData = null;
+        if (File.Exists(fullPath))
+        {
+            try
+            {
+                string dataToLoad = "";
+                using (FileStream stream = new FileStream(fullPath, FileMode.Open))
+                {
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        dataToLoad = reader.ReadToEnd();
+                    }
+                }
 
+                loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+        }
+
+        return loadedData;
     }
 
     public void Save(GameData data)
@@ -27,7 +51,6 @@ public class FileDataHandler
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
-
             string dataToStore = JsonUtility.ToJson(data, true);
 
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
@@ -40,8 +63,7 @@ public class FileDataHandler
         }
         catch (System.Exception)
         {
-            Debug.LogError("File save is tired");
+            throw;
         }
     }
-    */
 }

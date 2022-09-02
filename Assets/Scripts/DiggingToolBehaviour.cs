@@ -261,9 +261,17 @@ public class DiggingToolBehaviour : MonoBehaviour
     public void setExpCounter(float exp)
     {
         //Set the Textfield in the UI
-        TMPro.TextMeshProUGUI expCounter =
+        try
+        {
+            TMPro.TextMeshProUGUI expCounter =
             GameObject.Find("ExpCounter").GetComponent<TMPro.TextMeshProUGUI>();
-        expCounter.text = "EXP: " + exp;
+            expCounter.text = "EXP: " + exp;
+        }
+        catch (System.Exception)
+        {
+            Debug.Log("Alles gut, der Counter is weg ich weiß.");
+        }
+
     }
 
     public void quitScene()
