@@ -255,7 +255,7 @@ public class DiggingToolBehaviour : MonoBehaviour
         //Set the Textfield in the UI
         TMPro.TextMeshProUGUI manpowerCounter =
             GameObject.Find("ManpowerCounter").GetComponent<TMPro.TextMeshProUGUI>();
-        manpowerCounter.text = "Manpower: \n\r" + manpower;
+        manpowerCounter.text = "Manpower: " + manpower;
     }
 
     public void setExpCounter(float exp)

@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace DataStorage
 {
-    public class DataStorageClass : MonoBehaviour
+    public class DataStorageClass : MonoBehaviour, IDataPersistence
     {
         //Manager Data Input
-        public int exp = 0;
+        public int exp;
         //Manager Data Output
-        public int manpower = 1000;
-        public int expMultiplikator = 1;
+        public int manpower;
+        public int expMultiplikator;
 
         //Digging Scene (Ausgrabungsschnitt)
         public Vector2 size;
@@ -57,6 +57,23 @@ namespace DataStorage
                 allSceneObjects[i].SetActive(true);
             }
             allSceneObjects = null;
+        }
+
+        public void LoadData(GameData data)
+        {
+            DataStorageClass dataStorage = GameObject.Find("DataStorageObject").GetComponent<DataStorageClass>();
+            exp = data.exp;
+            expMultiplikator = data.expMultiplikator;
+            manpower = data.manpower;
+        }
+
+        public void SaveData(ref GameData data)
+        {
+            DataStorageClass dataStorage = GameObject.Find("DataStorageObject").GetComponent<DataStorageClass>();
+            data.exp = exp;
+            data.expMultiplikator = expMultiplikator;
+            data.manpower = manpower;
+            Debug.Log("Saved Data " + exp);
         }
     }
 }
