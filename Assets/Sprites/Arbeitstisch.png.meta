@@ -119,10 +119,10 @@ TextureImporter:
       name: Arbeitstisch_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 1
-        width: 105
-        height: 62
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,6 +132,27 @@ TextureImporter:
       bones: []
       spriteID: 6d43c5696c02756428fcf4d8e9b2e9f1
       internalID: 1488810220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arbeitstisch_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15bb3e13346a33d4dbc4a1fdbcd74023
+      internalID: 694882036
       vertices: []
       indices: 
       edges: []
@@ -148,6 +169,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Arbeitstisch_0: 1488810220
+      Arbeitstisch_1: 694882036
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
