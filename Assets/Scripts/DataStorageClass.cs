@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DataStorage
 {
-    public class DataStorageClass : MonoBehaviour, IDataPersistence
+    public class DataStorageClass : MonoBehaviour
     {
         //Manager Data Input
         public int exp;
@@ -15,15 +15,23 @@ namespace DataStorage
         //Digging Scene (Ausgrabungsschnitt)
         public Vector2 size;
         public int artifactsEnabled;
-        bool abraumMatrixInitialized = false;
+        public bool abraumMatrixInitialized = false;
         public int[][][] abraumMatrix;
 
         public GameObject[] allSceneObjects;
 
         public int ArtifactSceneNumber;
 
+        public static DataStorageClass instance { get; private set; }
+
         void Awake()
         {
+            if (instance != null)
+            {
+                Debug.Log("There is already an DataStorageClass present in the scene.");
+                GameObject.Destroy(this.gameObject);
+            }
+            instance = this;
             DontDestroyOnLoad(this.gameObject);
 
             if (!abraumMatrixInitialized)
@@ -33,7 +41,7 @@ namespace DataStorage
             }
         }
 
-        private void initializeAbraumMatrix()
+        public void initializeAbraumMatrix()
         {
             abraumMatrix = new int[100][][];
             for (int i = 0; i < 100; i++)
@@ -57,23 +65,6 @@ namespace DataStorage
                 allSceneObjects[i].SetActive(true);
             }
             allSceneObjects = null;
-        }
-
-        public void LoadData(GameData data)
-        {
-            DataStorageClass dataStorage = GameObject.Find("DataStorageObject").GetComponent<DataStorageClass>();
-            exp = data.exp;
-            expMultiplikator = data.expMultiplikator;
-            manpower = data.manpower;
-        }
-
-        public void SaveData(ref GameData data)
-        {
-            DataStorageClass dataStorage = GameObject.Find("DataStorageObject").GetComponent<DataStorageClass>();
-            data.exp = exp;
-            data.expMultiplikator = expMultiplikator;
-            data.manpower = manpower;
-            Debug.Log("Saved Data " + exp);
         }
     }
 }

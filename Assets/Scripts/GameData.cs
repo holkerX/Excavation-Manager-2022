@@ -8,10 +8,15 @@ public class GameData
     public int exp;
     public int manpower;
     public int expMultiplikator;
+    public bool abraumMatrixInitialized;
+    public int[][][] abraumMatrix;
+
     public GameData()
     {
         this.exp = 0;
         this.manpower = 0;
         this.expMultiplikator = 1;
+        abraumMatrixInitialized = false;
+        this.abraumMatrix = null;
     }
 }
