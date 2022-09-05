@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 using DataStorage;
 using SandboxTileManagement;
 
-public class SandboxPlayerMovement : MonoBehaviour
+public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
 {
     public float moveSpeed;
 
@@ -41,6 +41,7 @@ public class SandboxPlayerMovement : MonoBehaviour
 
     void Start()
     {
+        DataPersistenceManager.instance.LoadGame();
         expCounter =
             GameObject.Find("ExpCounter").GetComponent<TMPro.TextMeshProUGUI>();
         expCounter.text = "EXP: " + dataStorage.exp;
@@ -281,5 +282,25 @@ public class SandboxPlayerMovement : MonoBehaviour
         {
             dataStorage.artifactsEnabled = 1;
         }
+    }
+
+
+    public void LoadData(GameData data)
+    {
+        dataStorage.exp = data.exp;
+        dataStorage.expMultiplikator = data.expMultiplikator;
+        dataStorage.manpower = data.manpower;
+        //dataStorage.abraumMatrixInitialized = data.abraumMatrixInitialized;
+        //dataStorage.abraumMatrix = data.abraumMatrix;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.exp = dataStorage.exp;
+        data.expMultiplikator = dataStorage.expMultiplikator;
+        data.manpower = dataStorage.manpower;
+
+        //data.abraumMatrixInitialized = dataStorage.abraumMatrixInitialized;
+        //data.abraumMatrix = dataStorage.abraumMatrix;
     }
 }

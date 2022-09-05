@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 using CursorBehavior;
 using DataStorage;
 
-public class DiggingToolBehaviour : MonoBehaviour
+public class DiggingToolBehaviour : MonoBehaviour, IDataPersistence
 {
     private GameObject[] layers;
 
@@ -52,7 +52,10 @@ public class DiggingToolBehaviour : MonoBehaviour
             }
             else
             {
-                digGround(mousePosition);
+                if (dataStorage.manpower > 0)
+                {
+                    digGround(mousePosition);
+                }
             }
         }
 
@@ -274,8 +277,29 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     }
 
+    public void LoadData(GameData data)
+    {
+        /*
+        dataStorage.exp = data.exp;
+        dataStorage.expMultiplikator = data.expMultiplikator;
+        dataStorage.manpower = data.manpower;
+        dataStorage.abraumMatrixInitialized = data.abraumMatrixInitialized;
+        dataStorage.abraumMatrix = data.abraumMatrix;
+        */
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.exp = dataStorage.exp;
+        data.expMultiplikator = dataStorage.expMultiplikator;
+        data.manpower = dataStorage.manpower;
+        //data.abraumMatrixInitialized = dataStorage.abraumMatrixInitialized;
+        //data.abraumMatrix = dataStorage.abraumMatrix;
+    }
+
     public void quitScene()
     {
+        DataPersistenceManager.instance.SaveGame();
         SceneManager.LoadScene("Sandbox 0");
     }
 }

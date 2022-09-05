@@ -11,6 +11,12 @@ public class SandboxTableMenu : MonoBehaviour
         SceneManager.LoadScene("Digging 0");
     }
 
+    public void mainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Menu");
+    }
+
     // TODO DO NOT USE!!! first see checkPlayerAtDesk()
     public void exitMenu()
     {

@@ -27,7 +27,7 @@ namespace SandboxTileManagement
                 sandboxTileValues[i] = new int[50];
             }
             initSandboxTileValues();
-            initSandboxTileIsShown(); //Abraum Feature  
+            //initSandboxTileIsShown(); //Abraum Feature  
         }
 
         private void initSandboxTileValues()
@@ -43,8 +43,13 @@ namespace SandboxTileManagement
             }
         }
 
-        private void initSandboxTileIsShown()
+        public void initSandboxTileIsShown()
         {
+            if (!dataStorage.abraumMatrixInitialized)
+            {
+                dataStorage.initializeAbraumMatrix();
+                dataStorage.abraumMatrixInitialized = true;
+            }
             for (int i = 0; i < 100; i++)
             {
                 for (int j = 0; j < 50; j++)
