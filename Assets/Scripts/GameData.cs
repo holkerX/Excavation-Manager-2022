@@ -8,10 +8,12 @@ public class GameData
     public int exp;
     public int manpower;
     public int expMultiplikator;
+    public double money;
     public GameData()
     {
         this.exp = 0;
         this.manpower = 0;
         this.expMultiplikator = 1;
+        this.money = 0;
     }
 }

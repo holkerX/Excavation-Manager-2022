@@ -49,7 +49,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(ref gameData);
         }
-
+        Debug.Log("save money: " + gameData.money);
         dataHandler.Save(gameData);
     }
 
