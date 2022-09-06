@@ -30,6 +30,9 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
 
     void Awake()
     {
+        gameObject.name[...]
+
+
         GameObject dataStorageObject = GameObject.Find("DataStorageObject");
         dataStorage = dataStorageObject.GetComponent<DataStorageClass>();
         GameObject sandboxTileManagement = GameObject.Find("SandboxTileManagement");

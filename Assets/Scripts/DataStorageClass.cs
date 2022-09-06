@@ -20,7 +20,7 @@ namespace DataStorage
 
         public GameObject[] allSceneObjects;
 
-        public int ArtifactSceneNumber;
+        public int ArtifactNumber;
 
         public static DataStorageClass instance { get; private set; }
 

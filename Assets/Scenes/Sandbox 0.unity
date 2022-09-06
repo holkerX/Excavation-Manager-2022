@@ -39452,7 +39452,7 @@ Tilemap:
   - m_RefCount: 13
     m_Data: {fileID: 11400000, guid: a0557096da994ec49a0ab52748bdab07, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 7455dba479fe69f4a8b60f4dd674cf8b, type: 2}
+    m_Data: {fileID: 11400000, guid: e703ec6a213b2cf41bce4f93debdc3d5, type: 2}
   - m_RefCount: 30
     m_Data: {fileID: 11400000, guid: 9826bc2e6fd15664e903c099a186e39e, type: 2}
   - m_RefCount: 31
@@ -39589,7 +39589,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -549294647, guid: ff88c903076cca249999c18ff2fd80ee, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -1117415479, guid: ff88c903076cca249999c18ff2fd80ee, type: 3}
+    m_Data: {fileID: -1932059863, guid: fe93ea219f4fea44892a5dc3d4672793, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2135
     m_Data:
@@ -76822,7 +76822,7 @@ MonoBehaviour:
   artifactsEnabled: 0
   abraumMatrixInitialized: 0
   allSceneObjects: []
-  ArtifactSceneNumber: 0
+  ArtifactNumber: 0
 --- !u!4 &1773665560
 Transform:
   m_ObjectHideFlags: 0

@@ -124,9 +124,12 @@ public class DiggingToolBehaviour : MonoBehaviour, IDataPersistence
                 //tmp[0] ist die zuweisung der jeweiligen Artefakt Nummer
                 String[] tmp = artifacts[i].name.Split("(");
                 tmp = tmp[1].Split(")");
-                dataStorage.ArtifactSceneNumber = Int32.Parse(tmp[0]);
+                dataStorage.ArtifactNumber = Int32.Parse(tmp[0]);
+
+                //Raus aus der Schleife
                 i = artifacts.Length;
-                SceneManager.LoadScene("Artifact " + dataStorage.ArtifactSceneNumber, LoadSceneMode.Additive);
+                //Artefakt Szene laden
+                SceneManager.LoadScene("Artifact 0", LoadSceneMode.Additive);
             }
         }
     }
