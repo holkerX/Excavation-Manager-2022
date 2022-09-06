@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DataStorage;
 
 public class SandboxTableMenu : MonoBehaviour
 {
     public void startDigging()
     {
+        GameObject dataStorageObject = GameObject.Find("DataStorageObject");
+        DataStorageClass dataStorage = dataStorageObject.GetComponent<DataStorageClass>();
         Time.timeScale = 1;
-        SceneManager.LoadScene("Digging 0");
+        SceneManager.LoadScene("Digging " + dataStorage.LevelNumber);
     }
 
     public void mainMenu()
