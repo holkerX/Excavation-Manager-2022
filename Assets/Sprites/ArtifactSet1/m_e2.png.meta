@@ -116,11 +116,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: m_e2_Hufeisen_0
+      name: m_e2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 91
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -130,18 +130,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f92d2f06656961641bf2f5854cbebf3f
-      internalID: -1963400780
+      spriteID: 0fa136119ac03774d92e869a9dd2e503
+      internalID: -911599071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: m_e2_Hufeisen_1
+      name: m_e2_1
       rect:
         serializedVersion: 2
         x: 64
-        y: 91
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -151,18 +151,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2b5d7256c467d043aa2936747490583
-      internalID: 1081949091
+      spriteID: 637a7f608e86c2643850f48ab20518e0
+      internalID: 1269499026
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: m_e2_Hufeisen_2
+      name: m_e2_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 27
+        y: 0
         width: 64
         height: 64
       alignment: 0
@@ -172,18 +172,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60e66763ae539394890089aef7a510b1
-      internalID: -2032990685
+      spriteID: 32775a030debdb84fb51a709aed54cc8
+      internalID: 1845121134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: m_e2_Hufeisen_3
+      name: m_e2_3
       rect:
         serializedVersion: 2
         x: 64
-        y: 27
+        y: 0
         width: 64
         height: 64
       alignment: 0
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4bafcb872015ab4ca35733aa9027247
-      internalID: 804369773
+      spriteID: b72e30fb2c56fb540a03d11c54f62337
+      internalID: 934515424
       vertices: []
       indices: 
       edges: []
@@ -210,10 +210,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      m_e2_Hufeisen_0: -1963400780
-      m_e2_Hufeisen_2: -2032990685
-      m_e2_Hufeisen_3: 804369773
-      m_e2_Hufeisen_1: 1081949091
+      m_e2_1: 1269499026
+      m_e2_0: -911599071
+      m_e2_3: 934515424
+      m_e2_2: 1845121134
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
