@@ -19,7 +19,7 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     private Vector2 cursorHotspot;
 
-    private GameObject dataStorage;
+    private DataStorageClass dataStorage;
 
     CursorBehaviour cursorBehaviour;
 
@@ -33,12 +33,16 @@ public class ArtifactToolBehaviour : MonoBehaviour
     {
         groundLayers = GameObject.FindGameObjectsWithTag("GroundLayer");
         dustLayers = GameObject.FindGameObjectsWithTag("DustLayer");
-        artifact = GameObject.Find("Artifact");
-        dataStorage = GameObject.Find("DataStorageObject");
+        dataStorage = GameObject.Find("DataStorageObject").GetComponent<DataStorageClass>();
     }
+
     // Start is called before the first frame update
     void Start()
     {
+        string artifactName = "Artifact (" + dataStorage.ArtifactNumber + ")";
+        artifact = GameObject.Find(artifactName);
+        deactivateArtifacts();
+
         cursorBehaviour = GameObject.Find("CursorBehaviourSkript").GetComponent<CursorBehaviour>();
         setExpCounter(artifact.GetComponent<ArtifactArtifact>().experiencePoints);
         clickCounter = 0;
@@ -79,6 +83,18 @@ public class ArtifactToolBehaviour : MonoBehaviour
         pattern[2] = new int[] { 0, 1, 1, 1, 0 };
         pattern[3] = new int[] { 0, 0, 1, 1, 0 };
         pattern[4] = new int[] { 0, 1, 1, 1, 0 };
+    }
+
+    private void deactivateArtifacts()
+    {
+        GameObject[] artifacts = GameObject.FindGameObjectsWithTag("Artifact");
+        for (int i = 0; i < artifacts.Length; i++)
+        {
+            if (artifacts[i].name != artifact.name)
+            {
+                artifacts[i].SetActive(false);
+            }
+        }
     }
 
     private void checkArtifactIsCleaned()
@@ -235,12 +251,10 @@ public class ArtifactToolBehaviour : MonoBehaviour
 
     public void quitScene()
     {
-        dataStorage = GameObject.Find("DataStorageObject");
-        DataStorageClass d = dataStorage.GetComponent<DataStorageClass>();
-        d.exp = d.exp + (artifact.GetComponent<ArtifactArtifact>().experiencePoints * d.expMultiplikator);
-
-        SceneManager.UnloadSceneAsync("Artifact " + d.ArtifactSceneNumber);
+        dataStorage.exp = dataStorage.exp
+                        + (artifact.GetComponent<ArtifactArtifact>().experiencePoints * dataStorage.expMultiplikator);
+        SceneManager.UnloadSceneAsync("Artifact 0");
         //Reload Digging Scene
-        d.activateAllObjectsInScene();
+        dataStorage.activateAllObjectsInScene();
     }
 }
