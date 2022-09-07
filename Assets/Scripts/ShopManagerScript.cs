@@ -70,7 +70,9 @@ public class ShopManagerScript : MonoBehaviour
         }
     }
 
-    public void startExcavation(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    public void startExcavation()
+    {
+        int i = 0; //Level nummer 0 oder 1
+        SceneManager.LoadScene("Sandbox " + i);
     }
 }
