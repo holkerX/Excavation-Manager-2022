@@ -61,7 +61,7 @@ public class DiggingInitializeScene : MonoBehaviour
             artifacts[tmp].SetActive(true);
             setArtifactPosition(artifacts[tmp]);
         }
-        Debug.Log("Artifacts Enabled: " + dataStorage.artifactsEnabled);
+        //Debug.Log("Artifacts Enabled: " + dataStorage.artifactsEnabled);
     }
 
     private void setArtifactPosition(GameObject artifact)
@@ -72,6 +72,6 @@ public class DiggingInitializeScene : MonoBehaviour
         newPosition.y = rnd.Next(0, (int)scaledGridSize.y);
         newPosition.z = 0; // Layer is controlled by Tilemap Renderer Component and is right now "hardcoded"
         artifact.transform.position = newPosition;
-        Debug.Log("Artefact: " + artifact.name + " Is at Position: " + newPosition);
+        //Debug.Log("Artefact: " + artifact.name + " Is at Position: " + newPosition);
     }
 }

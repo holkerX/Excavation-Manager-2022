@@ -313,8 +313,14 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
         dataStorage.exp = data.exp;
         dataStorage.expMultiplikator = data.expMultiplikator;
         dataStorage.manpower = data.manpower;
-        //dataStorage.abraumMatrixInitialized = data.abraumMatrixInitialized;
-        //dataStorage.abraumMatrix = data.abraumMatrix;
+        /*
+        if (!data.abraumMatrixInitialized)
+        {
+            data.abraumMatrix = dataStorage.abraumMatrix;
+            data.abraumMatrixInitialized = true;
+        }
+        dataStorage.abraumMatrix = data.abraumMatrix;
+        */
     }
 
     public void SaveData(ref GameData data)
@@ -322,8 +328,9 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
         data.exp = dataStorage.exp;
         data.expMultiplikator = dataStorage.expMultiplikator;
         data.manpower = dataStorage.manpower;
-
-        //data.abraumMatrixInitialized = dataStorage.abraumMatrixInitialized;
-        //data.abraumMatrix = dataStorage.abraumMatrix;
+        /*
+        data.abraumMatrixInitialized = data.abraumMatrixInitialized;
+        data.abraumMatrix = dataStorage.abraumMatrix;
+        */
     }
 }

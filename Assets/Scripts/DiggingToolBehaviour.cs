@@ -282,13 +282,6 @@ public class DiggingToolBehaviour : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        /*
-        dataStorage.exp = data.exp;
-        dataStorage.expMultiplikator = data.expMultiplikator;
-        dataStorage.manpower = data.manpower;
-        dataStorage.abraumMatrixInitialized = data.abraumMatrixInitialized;
-        dataStorage.abraumMatrix = data.abraumMatrix;
-        */
     }
 
     public void SaveData(ref GameData data)
@@ -296,8 +289,6 @@ public class DiggingToolBehaviour : MonoBehaviour, IDataPersistence
         data.exp = dataStorage.exp;
         data.expMultiplikator = dataStorage.expMultiplikator;
         data.manpower = dataStorage.manpower;
-        //data.abraumMatrixInitialized = dataStorage.abraumMatrixInitialized;
-        //data.abraumMatrix = dataStorage.abraumMatrix;
     }
 
     public void quitScene()
