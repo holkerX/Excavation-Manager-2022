@@ -303,6 +303,6 @@ public class DiggingToolBehaviour : MonoBehaviour, IDataPersistence
     public void quitScene()
     {
         DataPersistenceManager.instance.SaveGame();
-        SceneManager.LoadScene("Sandbox 0");
+        SceneManager.LoadScene("Sandbox " + dataStorage.LevelNumber);
     }
 }
