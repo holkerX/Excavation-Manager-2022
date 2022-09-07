@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 using CursorBehavior;
 using DataStorage;
 
-public class DiggingToolBehaviour : MonoBehaviour, IDataPersistence
+public class DiggingToolBehaviour : MonoBehaviour
 {
     private GameObject[] layers;
 
@@ -278,17 +278,6 @@ public class DiggingToolBehaviour : MonoBehaviour, IDataPersistence
             Debug.Log("Alles gut, der Counter is weg ich weiß.");
         }
 
-    }
-
-    public void LoadData(GameData data)
-    {
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        data.exp = dataStorage.exp;
-        data.expMultiplikator = dataStorage.expMultiplikator;
-        data.manpower = dataStorage.manpower;
     }
 
     public void quitScene()

@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -313,14 +315,11 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
         dataStorage.exp = data.exp;
         dataStorage.expMultiplikator = data.expMultiplikator;
         dataStorage.manpower = data.manpower;
-        /*
-        if (!data.abraumMatrixInitialized)
+        if (data.abraumMatrixObjectsInitialized)
         {
-            data.abraumMatrix = dataStorage.abraumMatrix;
-            data.abraumMatrixInitialized = true;
+            LoadAbraumMatrix(data);
         }
-        dataStorage.abraumMatrix = data.abraumMatrix;
-        */
+        Debug.Log("Data Loaded");
     }
 
     public void SaveData(ref GameData data)
@@ -328,9 +327,50 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
         data.exp = dataStorage.exp;
         data.expMultiplikator = dataStorage.expMultiplikator;
         data.manpower = dataStorage.manpower;
-        /*
-        data.abraumMatrixInitialized = data.abraumMatrixInitialized;
-        data.abraumMatrix = dataStorage.abraumMatrix;
-        */
+        SaveAbraumMatrix(ref data);
+        Debug.Log("Data Saved");
+    }
+
+    private void LoadAbraumMatrix(GameData data)
+    {
+        for (int i = 0; i < data.abraumMatrixObjects.Length; i++)
+        {
+            int x = data.abraumMatrixObjects[i].x;
+            int y = data.abraumMatrixObjects[i].y;
+            int k = data.abraumMatrixObjects[i].k;
+            int tileIsShown = data.abraumMatrixObjects[i].tileIsShown;
+            dataStorage.abraumMatrix[x][y][k] = tileIsShown;
+        }
+    }
+
+    private void SaveAbraumMatrix(ref GameData data)
+    {
+        int counter = 0;
+        for (int i = 0; i < 100; i++)
+        {
+            for (int j = 0; j < 50; j++)
+            {
+                for (int k = 0; k < 3; k++)
+                {
+                    AbraumMatrixObject o;
+                    if (dataStorage.abraumMatrix[i][j][k] == 0)
+                    {
+                        o = new AbraumMatrixObject(i, j, k, 0);
+                    }
+                    else
+                    {
+                        o = new AbraumMatrixObject(i, j, k, 1);
+                    }
+                    if (counter >= 15000)
+                    {
+                        Debug.Log("Du Holzkopf");
+                    }
+                    data.abraumMatrixObjects[counter] = o;
+                    counter++;
+                }
+            }
+        }
+
+        data.abraumMatrixObjectsInitialized = true;
     }
 }
