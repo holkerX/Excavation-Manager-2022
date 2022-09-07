@@ -30,9 +30,6 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
 
     void Awake()
     {
-        gameObject.name[...]
-
-
         GameObject dataStorageObject = GameObject.Find("DataStorageObject");
         dataStorage = dataStorageObject.GetComponent<DataStorageClass>();
         GameObject sandboxTileManagement = GameObject.Find("SandboxTileManagement");
@@ -53,6 +50,10 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
         infoBox.text = "Go outside the Base and press SPACE to place Flags";
         tableMenu.SetActive(false);
         pauseMenu.SetActive(false);
+
+        String[] tmp = gameObject.scene.name.Split(" ");
+        dataStorage.LevelNumber = Int32.Parse(tmp[1]);
+        Debug.Log("Level Number: " + dataStorage.LevelNumber);
     }
 
     // Update is called once per frame
@@ -72,7 +73,7 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
         {
             if (!canStartDigging)
             {
-                placeFlag();
+                checkPlaceFlag();
             }
         }
 
@@ -113,45 +114,64 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
-    //Platziert Fagge(Rechteck um den Schnitt, Schnitte werden an den Stellen vordefiniert)
-    void placeFlag()
+    void checkPlaceFlag()
     {
         Vector3 playerPosition = GameObject.Find("Player").transform.position;
-
-        if ((playerPosition.x > 22 && playerPosition.x < 32) && (playerPosition.y > 11 && playerPosition.y < 17))
+        if (dataStorage.LevelNumber == 0)
         {
-            infoBox.text = "Don't place the Flags into the Base!!!";
+            if ((playerPosition.x > 22 && playerPosition.x < 32) && (playerPosition.y > 11 && playerPosition.y < 17))
+            {
+                infoBox.text = "Don't place the Flags into the Base!!!";
+            }
+            else
+            {
+                placeFlag(playerPosition);
+            }
+        }
+        if (dataStorage.LevelNumber == 1)
+        {
+            if ((playerPosition.x > 30 && playerPosition.x < 37) && (playerPosition.y > 3 && playerPosition.y < 9))
+            {
+                infoBox.text = "Don't place the Flags into the Base!!!";
+            }
+            else
+            {
+                placeFlag(playerPosition);
+            }
+        }
+
+    }
+
+    //Platziert Fagge(Rechteck um den Schnitt, Schnitte werden an den Stellen vordefiniert)
+    void placeFlag(Vector3 playerPosition)
+    {
+        Tilemap tilemap = GameObject.Find("Flags").GetComponent<Tilemap>();
+        Sprite sprite = Resources.Load<Sprite>("Flag");
+
+        if (firstFlagPlaced)
+        {
+            createFlagObject("flag2", playerPosition);
+            infoBox.text = "Go back to the Base and press ENTER at the Table to start digging.";
         }
         else
         {
-            Tilemap tilemap = GameObject.Find("Flags").GetComponent<Tilemap>();
-            Sprite sprite = Resources.Load<Sprite>("Flag");
+            createFlagObject("flag1", playerPosition);
+            infoBox.text = "First Flag placed, go place a second one.";
+        }
 
-            if (firstFlagPlaced)
-            {
-                createFlagObject("flag2", playerPosition);
-                infoBox.text = "Go back to the Base and press ENTER at the Table to start digging.";
-            }
-            else
-            {
-                createFlagObject("flag1", playerPosition);
-                infoBox.text = "First Flag placed, go place a second one.";
-            }
-
-            if (firstFlagPlaced)
-            {
-                secondFlagPosition.x = playerPosition.x;
-                secondFlagPosition.y = playerPosition.y;
-                firstFlagPlaced = false;
-                canStartDigging = true;
-            }
-            else
-            {
-                firstFlagPosition.x = playerPosition.x;
-                firstFlagPosition.y = playerPosition.y;
-                firstFlagPlaced = true;
-                canStartDigging = false;
-            }
+        if (firstFlagPlaced)
+        {
+            secondFlagPosition.x = playerPosition.x;
+            secondFlagPosition.y = playerPosition.y;
+            firstFlagPlaced = false;
+            canStartDigging = true;
+        }
+        else
+        {
+            firstFlagPosition.x = playerPosition.x;
+            firstFlagPosition.y = playerPosition.y;
+            firstFlagPlaced = true;
+            canStartDigging = false;
         }
     }
 
@@ -181,7 +201,7 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
             else
             {
                 deleteTiles(); //Loch anzeigen
-                //infoBox.text = "Der Ausgrabungsschnitt ist " + dataStorage.size.x + "x" + dataStorage.size.y + " 2m Kacheln groß";
+                               //infoBox.text = "Der Ausgrabungsschnitt ist " + dataStorage.size.x + "x" + dataStorage.size.y + " 2m Kacheln groß";
                 saveNumberOfArtifacts();
                 //SceneManager.LoadScene("Digging 0");
                 Time.timeScale = 0;

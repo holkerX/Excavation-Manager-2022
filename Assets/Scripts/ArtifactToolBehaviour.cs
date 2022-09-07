@@ -253,7 +253,7 @@ public class ArtifactToolBehaviour : MonoBehaviour
     {
         dataStorage.exp = dataStorage.exp
                         + (artifact.GetComponent<ArtifactArtifact>().experiencePoints * dataStorage.expMultiplikator);
-        SceneManager.UnloadSceneAsync("Artifact 0");
+        SceneManager.UnloadSceneAsync("Artifact " + dataStorage.LevelNumber);
         //Reload Digging Scene
         dataStorage.activateAllObjectsInScene();
     }

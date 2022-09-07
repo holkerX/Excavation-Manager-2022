@@ -22,6 +22,8 @@ namespace DataStorage
 
         public int ArtifactNumber;
 
+        public int LevelNumber;
+
         public static DataStorageClass instance { get; private set; }
 
         void Awake()

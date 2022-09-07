@@ -129,7 +129,7 @@ public class DiggingToolBehaviour : MonoBehaviour, IDataPersistence
                 //Raus aus der Schleife
                 i = artifacts.Length;
                 //Artefakt Szene laden
-                SceneManager.LoadScene("Artifact 0", LoadSceneMode.Additive);
+                SceneManager.LoadScene("Artifact " + dataStorage.LevelNumber, LoadSceneMode.Additive);
             }
         }
     }
@@ -303,6 +303,6 @@ public class DiggingToolBehaviour : MonoBehaviour, IDataPersistence
     public void quitScene()
     {
         DataPersistenceManager.instance.SaveGame();
-        SceneManager.LoadScene("Sandbox 0");
+        SceneManager.LoadScene("Sandbox " + dataStorage.LevelNumber);
     }
 }
