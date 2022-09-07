@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 5
 --- !u!19719996 &38569063
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 100
 --- !u!19719996 &53491946
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &65580991
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &87772867
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1076,7 +1076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &138837141
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1303,7 +1303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &145610301
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1502,7 +1502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &293733583
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1687,7 +1687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 100
 --- !u!19719996 &346873269
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -2072,7 +2072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 60
 --- !u!19719996 &372033638
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -2257,7 +2257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 100
 --- !u!19719996 &387068509
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -9310,7 +9310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 200
 --- !u!19719996 &636059577
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -9537,7 +9537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &637921850
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -9722,7 +9722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 100
 --- !u!19719996 &655597277
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -9907,7 +9907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 200
 --- !u!19719996 &707581875
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -10106,7 +10106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 150
 --- !u!19719996 &745663885
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -10333,7 +10333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 150
 --- !u!19719996 &749379664
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -10560,7 +10560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 100
 --- !u!19719996 &789829711
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -10787,7 +10787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &889262233
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -10972,7 +10972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &898068878
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -11157,7 +11157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &955376066
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -11370,7 +11370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 10
 --- !u!19719996 &981729609
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -11569,7 +11569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1040719290
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -11821,7 +11821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 300
 --- !u!19719996 &1095534235
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -12482,7 +12482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 150
 --- !u!19719996 &1146491974
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -12709,7 +12709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1151288839
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -12894,7 +12894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 100
 --- !u!19719996 &1215203261
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -13079,7 +13079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 300
 --- !u!19719996 &1229676066
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -13712,7 +13712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 400
 --- !u!19719996 &1271905052
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -14429,7 +14429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1309873139
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -28049,7 +28049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1390711168
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -28276,7 +28276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 500
 --- !u!19719996 &1408958680
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -28797,7 +28797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 500
 --- !u!19719996 &1418607225
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -29654,7 +29654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1428199556
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -29873,7 +29873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1472290787
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -30365,7 +30365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1578919989
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -30550,7 +30550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1587859343
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -30735,7 +30735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1613506411
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -30962,7 +30962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 90
 --- !u!19719996 &1619036218
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -31147,7 +31147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1628124863
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -31507,7 +31507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 70
 --- !u!19719996 &1846249556
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -31692,7 +31692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 100
 --- !u!19719996 &1888333579
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -31891,7 +31891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1935213583
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -32076,7 +32076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &1997266239
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -32261,7 +32261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 100
 --- !u!19719996 &2016573599
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -32488,7 +32488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21b81eb7dd684242b5f3f225fc7e6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  experiencePoints: 50
 --- !u!19719996 &2039411074
 TilemapCollider2D:
   m_ObjectHideFlags: 0
