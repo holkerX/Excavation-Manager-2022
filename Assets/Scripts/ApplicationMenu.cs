@@ -145,11 +145,10 @@ public class ApplicationMenu : MonoBehaviour, IDataPersistence
 
     public void Apply ()
     {
-        //SceneManager.LoadScene(3);
+        SceneManager.LoadScene(3);
         moneyMultiplikator = multi_1 + multi_2 + multi_3 + multi_4;
-        money = moneyMultiplikator * 800000;
+        money = moneyMultiplikator * 40000;
         DataPersistenceManager.instance.SaveGame();
-        Time.timeScale = 1;
-        gameObject.SetActive(false);
+        
     }
 }

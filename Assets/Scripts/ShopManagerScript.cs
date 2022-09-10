@@ -6,54 +6,52 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class ShopManagerScript : MonoBehaviour
+public class ShopManagerScript : MonoBehaviour, IDataPersistence
 {
     public int[,] shopItems = new int[5, 5];
-    public float money;
+    public double money;
+    public int manpower;
+    public double manpowercast;
+    public int expMultiplikator;
     public Text MoneyTXT;
     public Button tools;
     public int toolPrice;
+    public double noTools;
+
+    public void LoadData(GameData data){
+        this.money = data.money;
+        this.manpower = data.manpower;
+        this.expMultiplikator = data.expMultiplikator;
+    }
+
+    public void SaveData(ref GameData data){
+        data.money = this.money;
+        data.manpower = this.manpower;
+        data.expMultiplikator = this.expMultiplikator;
+    }
 
     void Start()
     {
         MoneyTXT.text = money.ToString();
 
         //ID's
-        shopItems[1, 1] = 1;
-        shopItems[1, 2] = 2;
-        shopItems[1, 3] = 3;
-        shopItems[1, 4] = 4;
+        shopItems[1, 1] = 1; //Students
+        shopItems[1, 2] = 2; //Doctors
+        shopItems[1, 3] = 3; //Helpers
+        shopItems[1, 4] = 4; //Tools
 
         //Price
-        shopItems[2, 1] = 200;
-        shopItems[2, 2] = 2000;
-        shopItems[2, 3] = 300;
+        shopItems[2, 1] = 2000;
+        shopItems[2, 2] = 20000;
+        shopItems[2, 3] = 3000;
+        shopItems[2, 4] = 1000;
 
 
         //Quantity
         shopItems[3, 1] = 0;
         shopItems[3, 2] = 0;
         shopItems[3, 3] = 0;
-
-    }
-
-    void Update()
-    {
-        //Price for tools
-        shopItems[2, 4] = toolPrice;
-        toolPrice = 100 * shopItems[3, 3];
-
-        //Quantity for tools equals number of helpers
-        shopItems[3, 4] = shopItems[3, 3];
-
-        if (toolPrice <= 0)
-        {
-            tools.GetComponent<Button>().interactable = false;
-        }
-        else
-        {
-            tools.GetComponent<Button>().interactable = true;
-        }
+        shopItems[3, 4] = 0;
     }
 
     public void Buy()
@@ -70,7 +68,26 @@ public class ShopManagerScript : MonoBehaviour
         }
     }
 
-    public void startExcavation(){
+    public void startExcavation()
+    {
+        if (shopItems[3, 4] < shopItems[3, 3])
+        {
+            noTools = 0.7;
+        }
+         else
+        {
+            noTools = 1;
+        }
+
+        manpowercast = ((shopItems[3, 3] * 4) + shopItems[3, 1]) * noTools;
+        manpower = (int)manpowercast;
+        expMultiplikator = shopItems[3, 1] + (shopItems[3, 2] * 12);
+
+        Debug.Log("tools : " + noTools);
+        Debug.Log("manpower : " + manpower);
+        Debug.Log("expMultiplikator : " + expMultiplikator);
+        DataPersistenceManager.instance.SaveGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        
     }
 }
