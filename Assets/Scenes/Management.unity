@@ -1400,6 +1400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1002708028}
   - component: {fileID: 1002708029}
+  - component: {fileID: 1002708030}
   m_Layer: 5
   m_Name: Manger
   m_TagString: Untagged
@@ -1439,10 +1440,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4002c938e66dfdc47b5ee32190193753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 10000
+  money: 0
   MoneyTXT: {fileID: 1482084755}
   tools: {fileID: 997513881}
   toolPrice: 0
+--- !u!114 &1002708030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002708027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d68148eedbeb954e84278853d3a94d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: data.game
 --- !u!1 &1107601515
 GameObject:
   m_ObjectHideFlags: 0
