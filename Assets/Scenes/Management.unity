@@ -1440,10 +1440,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4002c938e66dfdc47b5ee32190193753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 0
+  money: 80000
+  manpower: 0
+  manpowercast: 0
+  expMultiplikator: 0
   MoneyTXT: {fileID: 1482084755}
   tools: {fileID: 997513881}
   toolPrice: 0
+  noTools: 0
 --- !u!114 &1002708030
 MonoBehaviour:
   m_ObjectHideFlags: 0

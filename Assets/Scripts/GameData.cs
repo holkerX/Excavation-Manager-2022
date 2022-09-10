@@ -11,7 +11,6 @@ public class GameData
     public bool abraumMatrixInitialized;
     public int[][][] abraumMatrix;
     public double money;
-    public int[,] shopItems;
 
     public GameData()
     {
@@ -21,6 +20,5 @@ public class GameData
         abraumMatrixInitialized = false;
         this.abraumMatrix = null;
         this.money = 0;
-        this.shopItems = null;
     }
 }
