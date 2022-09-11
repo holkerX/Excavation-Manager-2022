@@ -8,15 +8,16 @@ using TMPro;
 
 public class ShopManagerScript : MonoBehaviour, IDataPersistence
 {
-    public int[,] shopItems = new int[5, 5];
+    public int[,] shopItems = new int[6, 6];
     public double money;
     public int manpower;
     public double manpowercast;
     public int expMultiplikator;
     public Text MoneyTXT;
-    public Button tools;
-    public int toolPrice;
+    public Button surveyButton;
     public double noTools;
+    public int equipment;
+    public int extraMulti;
 
     public void LoadData(GameData data){
         this.money = data.money;
@@ -38,13 +39,16 @@ public class ShopManagerScript : MonoBehaviour, IDataPersistence
         shopItems[1, 1] = 1; //Students
         shopItems[1, 2] = 2; //Doctors
         shopItems[1, 3] = 3; //Helpers
-        shopItems[1, 4] = 4; //Tools
+        shopItems[1, 4] = 4; //Digging Tools
+        shopItems[1, 5] = 5; //Surveying Tools
+
 
         //Price
         shopItems[2, 1] = 2000;
         shopItems[2, 2] = 20000;
         shopItems[2, 3] = 3000;
         shopItems[2, 4] = 1000;
+        shopItems[2, 5] = 1000;
 
 
         //Quantity
@@ -52,6 +56,26 @@ public class ShopManagerScript : MonoBehaviour, IDataPersistence
         shopItems[3, 2] = 0;
         shopItems[3, 3] = 0;
         shopItems[3, 4] = 0;
+        shopItems[3, 5] = 0;
+    }
+
+
+    void Update() {
+ 
+ if (shopItems[3, 5] == 3)
+        {
+            equipment = 2;
+            extraMulti = 2;
+            surveyButton.interactable = false;
+        }
+        else if (shopItems[3, 5] == 2)
+        {
+            equipment = 0;
+        }
+        else
+        {
+            equipment = -6;
+        }
     }
 
     public void Buy()
@@ -82,9 +106,9 @@ public class ShopManagerScript : MonoBehaviour, IDataPersistence
             noTools = 1;
         }
 
-        manpowercast = ((shopItems[3, 3] * 4) + shopItems[3, 1]) * noTools;
+        manpowercast = (((shopItems[3, 3] * 4) + shopItems[3, 1]) * noTools) + equipment;
         manpower = (int)manpowercast;
-        expMultiplikator = shopItems[3, 1] + (shopItems[3, 2] * 12);
+        expMultiplikator = (shopItems[3, 1] + (shopItems[3, 2] * 12)) + extraMulti;
 
         Debug.Log("tools : " + noTools);
         Debug.Log("manpower : " + manpower);
