@@ -18,6 +18,7 @@ public class ShopManagerScript : MonoBehaviour, IDataPersistence
     public double noTools;
     public int equipment;
     public int extraMulti;
+    private bool abraumMatrixInitialized;
 
     public void LoadData(GameData data){
         this.money = data.money;
@@ -29,6 +30,7 @@ public class ShopManagerScript : MonoBehaviour, IDataPersistence
         data.money = this.money;
         data.manpower = this.manpower;
         data.expMultiplikator = this.expMultiplikator;
+        data.abraumMatrixInitialized = this.abraumMatrixInitialized;
     }
 
     void Start()
@@ -94,8 +96,21 @@ public class ShopManagerScript : MonoBehaviour, IDataPersistence
 
     public void startExcavation()
     {
+        /*TODO
+            i
+            0 = Level 1 
+            1 = Level 2
+
+            Wenn zwischen Level 1 oder 2 gewechset wird dann muss 
+            this.abraumMatrixInitialized = false;
+            gesetzt werden sonst passiert nichts
+        */
         int i = 0; //Level nummer 0 oder 1
         SceneManager.LoadScene("Sandbox " + i);
+
+        if(true){
+            this.abraumMatrixInitialized = false;
+        }
 
         if (shopItems[3, 4] < shopItems[3, 3])
         {

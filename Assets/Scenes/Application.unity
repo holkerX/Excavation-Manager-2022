@@ -5494,7 +5494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d68148eedbeb954e84278853d3a94d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: data.game
+  fileName: excsave.json
 --- !u!1 &1438645587
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,7 +36,6 @@ public class FileDataHandler
             }
             catch (System.Exception)
             {
-
                 throw; 
             }
         }
