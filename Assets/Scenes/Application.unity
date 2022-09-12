@@ -5482,6 +5482,7 @@ MonoBehaviour:
   options_2: {fileID: 1815859165}
   options_3: {fileID: 243376943}
   options_4: {fileID: 1839658373}
+  degree: {fileID: 1035954566}
 --- !u!114 &1389826894
 MonoBehaviour:
   m_ObjectHideFlags: 0

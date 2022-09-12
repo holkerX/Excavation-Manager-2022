@@ -17,7 +17,7 @@ public class ApplicationMenu : MonoBehaviour, IDataPersistence
     public TMP_Dropdown options_2;
     public TMP_Dropdown options_3;
     public TMP_Dropdown options_4;
-
+    public TMP_Dropdown degree;
     public void LoadData(GameData data){
         this.money = data.money;
     }
@@ -122,7 +122,7 @@ public class ApplicationMenu : MonoBehaviour, IDataPersistence
     
         void valueChanged_4(TMP_Dropdown option)
     {
-         if(option.value == 1 || option.value == 2)
+        if(option.value == 1 || option.value == 2)
         {
             multi_4 = 0.5;
         }
@@ -145,10 +145,18 @@ public class ApplicationMenu : MonoBehaviour, IDataPersistence
 
     public void Apply ()
     {
-        SceneManager.LoadScene(3);
+        if(degree.value == 0 || degree.value == 1)
+        {
+            SceneManager.LoadScene(10);
+        }
+
+        else {
+            SceneManager.LoadScene(3);
+        }
+
+        
         moneyMultiplikator = multi_1 + multi_2 + multi_3 + multi_4;
         money = moneyMultiplikator * 40000;
         DataPersistenceManager.instance.SaveGame();
-        
     }
 }
