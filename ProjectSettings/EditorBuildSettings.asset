@@ -6,17 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Application.unity
-    guid: dc6bdc91605957147a466e7c7e91940b
-  - enabled: 1
-    path: Assets/Scenes/Artifact 0.unity
-    guid: dd3b181863a0cbd43b3639e786c1c7cf
-  - enabled: 1
-    path: Assets/Scenes/Artifact 1.unity
-    guid: 49c0d87071af7b146ae7a53d1e7e8f08
+    path: Assets/Scenes/Menu.unity
+    guid: 526b18a73832db94d91fa1c21d8f3a97
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: cd99b683f6a28834ebd61073ce57a1cc
+  - enabled: 1
+    path: Assets/Scenes/Application.unity
+    guid: dc6bdc91605957147a466e7c7e91940b
+  - enabled: 1
+    path: Assets/Scenes/Management.unity
+    guid: fcfbd0899febe074bb1ed1f755dbc667
   - enabled: 1
     path: Assets/Scenes/Digging 0.unity
     guid: f8845b61f5b65ae4d82a95b7290b6d77
@@ -24,11 +24,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Digging 1.unity
     guid: 361aa2a862e2dc8409c68c484259b32c
   - enabled: 1
-    path: Assets/Scenes/Management.unity
-    guid: fcfbd0899febe074bb1ed1f755dbc667
+    path: Assets/Scenes/Artifact 0.unity
+    guid: dd3b181863a0cbd43b3639e786c1c7cf
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: 526b18a73832db94d91fa1c21d8f3a97
+    path: Assets/Scenes/Artifact 1.unity
+    guid: 49c0d87071af7b146ae7a53d1e7e8f08
   - enabled: 1
     path: Assets/Scenes/Sandbox 0.unity
     guid: b8d6100f32430e74388b20610cb79e9c

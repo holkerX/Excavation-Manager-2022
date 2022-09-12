@@ -21,8 +21,6 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.LogError("There is already an DataPersistenceManager present in the scene.");
         }
         instance = this;
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
     }
 
     public void NewGame()
@@ -51,12 +49,14 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(ref gameData);
         }
-
-        dataHandler.Save(this.gameData);
+        Debug.Log("save money: " + gameData.money);
+        dataHandler.Save(gameData);
     }
 
     private void Start()
     {
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
 
