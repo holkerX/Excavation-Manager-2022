@@ -8,6 +8,6 @@ public class EscScene : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Menu");
     }
 }

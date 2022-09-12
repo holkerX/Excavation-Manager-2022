@@ -78952,7 +78952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Main Menu
+  m_text: Quit Level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -79188,7 +79188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a468b3a5e4069d442bd4f45015b8f83b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0a6ebbe1113d2194196091cc91d55b76, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

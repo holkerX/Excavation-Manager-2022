@@ -12,8 +12,9 @@ public class SandboxPauseMenu : MonoBehaviour
     }
     public void mainMenu()
     {
+        DataPersistenceManager.instance.SaveGame();
         Time.timeScale = 1;
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("LevelMenu");
     }
     public void saveGame()
     {
