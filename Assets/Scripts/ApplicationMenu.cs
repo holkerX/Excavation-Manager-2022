@@ -147,11 +147,11 @@ public class ApplicationMenu : MonoBehaviour, IDataPersistence
     {
         if(degree.value == 0 || degree.value == 1)
         {
-            SceneManager.LoadScene(10);
+            SceneManager.LoadScene("Game Over");
         }
 
         else {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene("Management");
         }
 
         

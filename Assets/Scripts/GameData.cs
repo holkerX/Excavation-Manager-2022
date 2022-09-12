@@ -9,10 +9,9 @@ public class GameData
     public int manpower;
     public int expMultiplikator;
     public bool abraumMatrixObjectsInitialized;
-    public AbraumMatrixObject[] abraumMatrixObjects;
-    public bool abraumMatrixInitialized;
-    public int[][][] abraumMatrix;
     public double money;
+    public int LevelNumber;
+    public AbraumMatrixObject[] abraumMatrixObjects;
 
     public GameData()
     {
@@ -21,8 +20,7 @@ public class GameData
         this.expMultiplikator = 1;
         this.abraumMatrixObjectsInitialized = false;
         this.abraumMatrixObjects = new AbraumMatrixObject[15000];
-        abraumMatrixInitialized = false;
-        this.abraumMatrix = null;
         this.money = 0;
+        this.LevelNumber = 0;
     }
 }
