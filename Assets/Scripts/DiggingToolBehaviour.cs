@@ -20,6 +20,8 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     private bool zoomArtifactActive = false;
 
+    private float manpower;
+
     CursorBehaviour cursorBehaviour;
 
     void Awake()
@@ -36,6 +38,7 @@ public class DiggingToolBehaviour : MonoBehaviour
         dataStorageObject = GameObject.Find("DataStorageObject");
         dataStorage = dataStorageObject.GetComponent<DataStorageClass>();
         setManpowerCounter(dataStorage.manpower);
+        manpower = dataStorage.manpower;
         setExpCounter(dataStorage.exp);
     }
 
@@ -52,7 +55,7 @@ public class DiggingToolBehaviour : MonoBehaviour
             }
             else
             {
-                if (dataStorage.manpower > 0)
+                if (manpower > 0)
                 {
                     digGround(mousePosition);
                 }
@@ -247,13 +250,12 @@ public class DiggingToolBehaviour : MonoBehaviour
 
     void depleteManpower()
     {
-        if (dataStorage.manpower > 0)
+        if (manpower > 0)
         {
-            dataStorage.manpower =
-                dataStorage.manpower - 1;
+            manpower--;
         }
 
-        setManpowerCounter(dataStorage.manpower);
+        setManpowerCounter(manpower);
     }
 
     public void setManpowerCounter(float manpower)
