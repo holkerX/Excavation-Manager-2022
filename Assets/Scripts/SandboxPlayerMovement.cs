@@ -30,6 +30,8 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
     TMPro.TextMeshProUGUI infoBox;
     TMPro.TextMeshProUGUI expCounter;
 
+    private bool abraumMatrixInitialized;
+
     void Awake()
     {
         GameObject dataStorageObject = GameObject.Find("DataStorageObject");
@@ -44,6 +46,13 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
     void Start()
     {
         DataPersistenceManager.instance.LoadGame();
+
+        if (!abraumMatrixInitialized)
+        {
+            dataStorage.initializeAbraumMatrix();
+        }
+        sandboxTileManagementScript.initSandboxTileIsShown(); //Abraum Feature  
+
         expCounter =
             GameObject.Find("ExpCounter").GetComponent<TMPro.TextMeshProUGUI>();
         expCounter.text = "EXP: " + dataStorage.exp;
@@ -315,6 +324,7 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
         dataStorage.exp = data.exp;
         dataStorage.expMultiplikator = data.expMultiplikator;
         dataStorage.manpower = data.manpower;
+        this.abraumMatrixInitialized = data.abraumMatrixObjectsInitialized;
         if (data.abraumMatrixObjectsInitialized)
         {
             LoadAbraumMatrix(data);
@@ -363,7 +373,7 @@ public class SandboxPlayerMovement : MonoBehaviour, IDataPersistence
                     }
                     if (counter >= 15000)
                     {
-                        Debug.Log("Du Holzkopf");
+                        Debug.Log("here");
                     }
                     data.abraumMatrixObjects[counter] = o;
                     counter++;

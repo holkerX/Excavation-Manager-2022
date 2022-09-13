@@ -15,7 +15,6 @@ namespace DataStorage
         //Digging Scene (Ausgrabungsschnitt)
         public Vector2 size;
         public int artifactsEnabled;
-        public bool abraumMatrixInitialized = false;
         public int[][][] abraumMatrix;
 
         public GameObject[] allSceneObjects;
@@ -35,12 +34,6 @@ namespace DataStorage
             }
             instance = this;
             DontDestroyOnLoad(this.gameObject);
-
-            if (!abraumMatrixInitialized)
-            {
-                initializeAbraumMatrix();
-                abraumMatrixInitialized = true;
-            }
         }
 
         public void initializeAbraumMatrix()

@@ -9,7 +9,7 @@ using TMPro;
 public class ShopManagerScript : MonoBehaviour, IDataPersistence
 {
     public int[,] shopItems = new int[6, 6];
-    public double money;
+    public int money;
     public int manpower;
     public double manpowercast;
     public int expMultiplikator;
@@ -21,7 +21,8 @@ public class ShopManagerScript : MonoBehaviour, IDataPersistence
     private bool abraumMatrixObjectsInitialized;
     private int LevelNumber;
 
-    public void LoadData(GameData data){
+    public void LoadData(GameData data)
+    {
         this.money = data.money;
         this.manpower = data.manpower;
         this.expMultiplikator = data.expMultiplikator;
@@ -29,7 +30,8 @@ public class ShopManagerScript : MonoBehaviour, IDataPersistence
         this.abraumMatrixObjectsInitialized = data.abraumMatrixObjectsInitialized;
     }
 
-    public void SaveData(ref GameData data){
+    public void SaveData(ref GameData data)
+    {
         data.money = this.money;
         data.manpower = this.manpower;
         data.expMultiplikator = this.expMultiplikator;
@@ -65,9 +67,10 @@ public class ShopManagerScript : MonoBehaviour, IDataPersistence
     }
 
 
-    void Update() {
- 
- if (shopItems[3, 5] == 3)
+    void Update()
+    {
+
+        if (shopItems[3, 5] == 3)
         {
             equipment = 2;
             extraMulti = 2;
@@ -99,10 +102,8 @@ public class ShopManagerScript : MonoBehaviour, IDataPersistence
 
     public void startExcavation()
     {
-        SceneManager.LoadScene("Sandbox " + LevelNumber);
-
-        //Level wechsel
-        if(abraumMatrixObjectsInitialized){
+        if (abraumMatrixObjectsInitialized)
+        {
             abraumMatrixObjectsInitialized = false;
         }
 
@@ -110,19 +111,17 @@ public class ShopManagerScript : MonoBehaviour, IDataPersistence
         {
             noTools = 0.7;
         }
-         else
+        else
         {
             noTools = 1;
         }
 
-        manpowercast = (((shopItems[3, 3] * 4) + shopItems[3, 1]) * noTools) + equipment;
+        manpowercast = (((shopItems[3, 3] * 12) + shopItems[3, 1]) * noTools) + equipment;
         manpower = (int)manpowercast;
         expMultiplikator = (shopItems[3, 1] + (shopItems[3, 2] * 12)) + extraMulti;
 
-        Debug.Log("tools : " + noTools);
-        Debug.Log("manpower : " + manpower);
-        Debug.Log("expMultiplikator : " + expMultiplikator);
         DataPersistenceManager.instance.SaveGame();
-    
+
+        SceneManager.LoadScene("Sandbox " + LevelNumber);
     }
 }

@@ -29,11 +29,6 @@ namespace SandboxTileManagement
             initSandboxTileValues();
         }
 
-        void Start()
-        {
-            initSandboxTileIsShown(); //Abraum Feature  
-        }
-
         private void initSandboxTileValues()
         {
             System.Random rnd = new System.Random();

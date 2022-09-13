@@ -9,7 +9,7 @@ public class GameData
     public int manpower;
     public int expMultiplikator;
     public bool abraumMatrixObjectsInitialized;
-    public double money;
+    public int money;
     public int LevelNumber;
     public AbraumMatrixObject[] abraumMatrixObjects;
 
