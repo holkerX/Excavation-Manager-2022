@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - GroundLayer
+  - Event
+  - Artifact
+  - DustLayer
   layers:
   - Default
   - TransparentFX
@@ -39,9 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Ground
     uniqueID: 4123114111
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0

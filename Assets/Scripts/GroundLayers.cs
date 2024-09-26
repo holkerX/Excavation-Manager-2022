@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CursorBehavior;
 
-namespace ToolBehavior {
 public class GroundLayers : MonoBehaviour
 {
+    //Collider und Positon des Objekts relativ zur Kamera ist für OnMouse...() wichtig
     public void OnMouseEnter()
     {
-        GameObject.Find("Tools").GetComponent<Tools>().setCursor();
+        GameObject.Find("CursorBehaviourSkript").GetComponent<CursorBehaviour>().setCursor();
     }
 
     public void OnMouseExit()
     {
-        GameObject.Find("Tools").GetComponent<Tools>().setCursorDefault();
+        GameObject.Find("CursorBehaviourSkript").GetComponent<CursorBehaviour>().setCursorDefault();
     }
-}
 }
